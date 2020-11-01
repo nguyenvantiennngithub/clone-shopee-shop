@@ -2,6 +2,9 @@ const express = require('express')
 const morgan = require('morgan')
 const exphbs  = require('express-handlebars')
 const path = require('path')
+const router  = require('./router/index.router')
+const connect = require('./config/db/index.db')
+
 const app = express()
  
 app.use(morgan('combined'))
@@ -19,9 +22,8 @@ app.use(
 app.use(express.json());
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
+connect();
+router(app);
 
-app.get('/', function (req, res) {
-  res.render('home')
-})
- 
+
 app.listen(8080)
