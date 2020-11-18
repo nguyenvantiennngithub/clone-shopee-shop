@@ -9,13 +9,15 @@ const productSchema = new Schema(
         description: { type: String },
         img: { type: String },
         title: { type: String },
-        start: { type: Number},
-        evaluate: { type: Number },
+        start: { type: Number, default: 0},
+        evaluate: { type: Number , default: 0},
         color: { type: Array },
-        price : { type: Number },
+        price : { type: String },
         trademark: { type: String },
         category: { type: String },
+        sold: { type: Number, default: 0},
         slug: { type: String, slug: 'name' },
+       
     },
     {
         timestamps: true,
@@ -29,4 +31,4 @@ productSchema.plugin(mongooseDelete, {
     validateBeforeDelete: true,
 });
 
-module.exports = mongoose.model('courses', productSchema);
+module.exports = mongoose.model('product', productSchema);

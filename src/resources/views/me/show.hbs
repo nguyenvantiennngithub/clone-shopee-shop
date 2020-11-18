@@ -1,0 +1,35 @@
+<div class="app__show">
+    <div class="grid wide">
+        <div class="row">
+            <h1>Hiển thị danh sách sản phẩm <a href="/me/list/trash">Thùng rác</a></h1>
+
+            <table class="show__table">
+                <tr>
+                   <th scope="col">#</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Đánh giá</th>
+                    <th scope="col" colspan="2">Ngày tạo</th>
+                
+                </tr>
+                {{#each products}}
+                <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.evaluate}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a href="/{{this.slug}}/soft-delete">
+                            Xóa
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+                
+                
+            </table>
+
+        </div>
+    </div>
+</div>

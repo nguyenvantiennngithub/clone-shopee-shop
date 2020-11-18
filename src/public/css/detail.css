@@ -1,0 +1,127 @@
+/* Phần cho trang [GET] /slug/detail */
+
+.detail__container{
+	padding-top: 24px;
+	background-color:#FFF;
+}
+
+.detail__background{
+	background-color: #F5F5F5;
+	padding-top: 50px;
+}
+
+
+
+.detail__heading-text{
+	font-size: 1.5rem;
+	margin: 0;
+}
+
+.detail__percent-rated{
+	color: #d0011b;
+	font-size: 1.3rem;
+	margin-right: 8px;
+}
+
+.detail__evaluate{
+	display: flex;
+	margin-top: 24px;
+}
+.home-product-item__rating.detail__rating{
+	margin-top: -5px;
+	transform: scale(1);
+    transform-origin: left;
+}
+
+.detail__count-rating{
+	color: #555;
+	margin-left: 8px;
+	margin-top: -6px;
+}
+.detail__price{
+	width: 665px;
+	height: 64px;
+	margin-top: 24px;
+	background-color: rgba(0,0,0,.1);
+}
+
+
+.detail__price-text{
+	display: flex;
+	color: #d0011b;
+	font-size: 1.9rem;
+	margin-left: 24px;
+	line-height: 64px;
+}
+
+.detail__delivery{
+	
+}
+
+.detail__color{
+	margin-top: 28px;
+	font-size: 1.2rem;
+	display: flex;
+}
+
+.detail__target{
+	min-width: 144px;
+}
+
+.detail__color-radio{
+	margin-right: 36px;
+	margin-top: -10px;
+}
+
+.detail__color-radio-btn{
+	width: 100px;
+	height: 44px;
+	background-color:#FFF;
+	border: 1px solid #EEE;
+	font-size: 0.9rem;
+}
+
+.detail__quantity-label{
+}
+
+.detail__quantity-input{
+	width: 100px;
+}
+
+.detail__submit-add{
+	margin-right: 24px;
+}
+
+.detail__submit-add-btn{
+	width: 200px;
+	height: 48px;
+	background-color:rgba(208,1,27,.08);
+	border: 1px solid #d0011b;
+	color: #d0011b;
+	border-radius: 4px;
+	padding: 8px 24px;
+	outline: none;
+
+}
+
+.detail__submit-add-text{
+	font-size: 1rem;
+}
+
+.detail__submit-buy-btn{
+	width: 184px;
+	height: 48px;
+	background-color: #d0011b;
+	border: 1px solid #d0011b;
+	color: #FFF;
+	border-radius: 4px;
+	padding: 8px 24px;
+	outline: none;
+}
+
+
+.deltail__description{
+	padding-top: 50px;
+}
+
+

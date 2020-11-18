@@ -1,0 +1,26 @@
+
+.show__table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.show__table td, .show__table th {
+    border: 1px solid #ddd;
+    padding: 16px;
+  }
+  
+.show__table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.show__table tr:hover {
+    background-color: #ddd;
+}
+
+.show__table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #fe6433;
+    color: white;
+}

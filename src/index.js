@@ -7,7 +7,7 @@ const connect = require('./config/db/index.db')
 
 const app = express()
  
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 

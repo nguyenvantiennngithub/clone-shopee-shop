@@ -1,0 +1,88 @@
+<div class="app__container">
+    <div class="detail__background">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col l-5" style="padding: 0">
+                    <div class="detail__container">
+                        <div class="home-product-item__img detail__product-item-img" style="background-image: url({{product.img}})"></div>
+                    </div>
+                </div>
+                <div class="col l-7" style="padding: 0">
+                    <div class="detail__container">
+                        <div class="detail__heading">
+                            <p class="detail__heading-text">{{product.name}}</p>
+                        </div>
+                        <div>
+                            <div class="detail__evaluate">
+                                <div class="home-product-item__rating detail__rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span class="detail__count-rating">( xem 0 đánh giá )</span>
+                            </div>
+
+                            <div class="detail__price">
+                                <span class="detail__price-text"> {{product.price}}đ</span>
+                            </div>
+
+                             <div class="detail__color">
+                                <span class="detail__target">Vận chuyển: </span>
+                                <div class="detail__delivery">
+                                    <span >
+                                        Miễn phí vận chuyển
+                                    </span>
+                                </div> 
+                            </div>
+
+                            <div class="detail__color">
+                                <span class="detail__target">Xu: </span>
+                                <div class="detail__delivery">
+                                    <span >
+                                        Mua hàng và tích 10.000 Shopee Xu
+                                    </span>
+                                </div> 
+                            </div>
+
+                            <div class="detail__color">
+                                <span class="detail__target">Màu sắc: </span> 
+                                {{#each product.color}}
+                                    <div class="detail__color-radio">
+                                        <button class="detail__color-radio-btn"> {{this}} </button>
+                                    </div>
+                                {{/each}}
+                            </div>
+
+                            <div class="detail__color">
+                                <label for="quantity" class="detail__quantity-label detail__target">Số lượng: </label>
+                                <input type="number" class="detail__quantity-input" id="quantity" name="quantity" min="0" step="1" value="0">
+                            </div>
+                            
+                            <div class="detail__color">
+                                <div class="detail__submit-add">
+                                    <button class="detail__submit-add-btn">
+                                        <span class="detail__submit-add-text">Thêm vào giỏ hàng</span>
+                                    </button>
+                                </div>
+                                 <div class="detail__submit-buy">
+                                    <button class="detail__submit-buy-btn">
+                                        <span class="detail__submit-add-text">Mua ngay</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="deltail__description">
+                 <div class="detail__container">
+                    <span>{{product.description}}</span>
+                 </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
