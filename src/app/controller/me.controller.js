@@ -3,13 +3,23 @@ const mongooseToObject = require('../../until/index.mongoose')
 class meController{
     //[GET] show
     show(req, res, next){
-        switch(req.body.slug)
-        productModel.find({})
-            .then((products)=>{
-                res.render("me/show",{
-                    products: mongooseToObject.mongoosesToObject(products)
-                })  
-            })
+        var tempProductModel;
+        switch(req.params.slug){
+            case 'show':{
+                tempProductModel = productModel.find({})
+                break;
+            }
+            case 'trash':{
+                tempProductModel = productModel.findDeleted({})
+                break;
+            }
+        }
+        tempProductModel.then((products)=>{
+            res.render("me/show",{
+                products: mongooseToObject.mongoosesToObject(products),
+                slug: req.params.slug
+            })  
+        })
     }
    
 }

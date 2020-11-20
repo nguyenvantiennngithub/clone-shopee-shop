@@ -1024,6 +1024,7 @@ body{
 	font-weight: 400;
 	border-bottom: 1px solid #F5F5F5;
 	margin: 0;
+	text-align: left;
 }
 
 
@@ -1066,6 +1067,8 @@ body{
 	display: block;	
 	transition: right linear 0.1s;
 	margin-right: 10px;
+	text-align: left;
+	margin-left: 16px;
 }
 
 .category-item__link:hover{

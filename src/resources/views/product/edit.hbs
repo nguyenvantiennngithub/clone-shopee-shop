@@ -3,40 +3,40 @@
         <div class="row">
             <h1>Tạo khóa học</h1>
             {{!--  name, description, img, trademark, category, quantity --}}
-            <form class="create__form" method="POST" action="/save">
+            <form class="create__form" method="POST" action="/{{product._id}}/update">
                 <div class="create__container">
                     <label for="create__name">Tên sản phẩm </label>
-                    <input type="text" id="create__name" name="name" class="create__input">
+                    <input type="text" id="create__name" value="{{product.name}}" name="name" class="create__input">
                 </div>
 
                 <div class="create__container">
                     <label for="create__price">Giá sản phẩm </label>
-                    <input type="text" id="create__price" name="price" class="create__input">
+                    <input type="text" id="create__price" value="{{product.price}}" name="price" class="create__input">
                 </div>
 
                 <div class="create__container">
                     <label for="create__color">Màu sắc</label>
-                    <input type="text" id="create__color" name="color" class="create__input" min="0" max="10">
+                    <input type="text" id="create__color" value="{{product.color}}" name="color" class="create__input" min="0" max="10">
                 </div>
                 
                 <div class="create__container">
                     <label for="create__description">Mô tả sản phẩm </label>
-                    <input type="text" id="create__description" name="description" class="create__input">
+                    <input type="text" id="create__description" value="{{product.description}}" name="description" class="create__input">
                 </div>
                 
                <div class="create__container">
                     <label for="create__img">Hình ảnh </label>
-                    <input type="text" id="create__img" name="img" class="create__input">
+                    <input type="text" id="create__img" value="{{product.img}}" name="img" class="create__input">
                 </div>
 
                 <div class="create__container">
                     <label for="create__category">Loại  </label>
-                    <input type="text" id="create__category" name="category" class="create__input">
+                    <input type="text" id="create__category" value="{{product.category}}" name="category" class="create__input">
                 </div>
 
                 <div class="create__container">
                     <label for="create__trademark">Tên hãng sản xuất </label>
-                    <input type="text" id="create__trademark" name="trademark" class="create__input">
+                    <input type="text" id="create__trademark" value="{{product.trademark}}" name="trademark" class="create__input">
                 </div>
                 <button class="btn btn--primary create__submit">Tạo sản phẩm</button>
             </form>

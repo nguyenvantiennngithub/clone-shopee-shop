@@ -1,4 +1,16 @@
 
+
+.show__redirect{
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    text-decoration: none;
+    display: block;
+    color: #fe6433;
+    height: 1rem;
+}
+
 .show__table{
     border-collapse: collapse;
     width: 100%;

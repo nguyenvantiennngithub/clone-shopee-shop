@@ -4,14 +4,22 @@ const exphbs  = require('express-handlebars')
 const path = require('path')
 const router  = require('./router/index.router')
 const connect = require('./config/db/index.db')
-
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 const app = express()
- 
 // app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+app.engine('.hbs', exphbs({
+    extname: '.hbs',
+    helpers: {
+        if_equal: function (string1, string2, option) { 
+            return (string1 == string2) ? option.fn(this) : option.inverse(this) 
+        },
+        
+        
+    }
+}));
 app.set('view engine', '.hbs');
 
 app.use(

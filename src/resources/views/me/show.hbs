@@ -1,35 +1,52 @@
 <div class="app__show">
     <div class="grid wide">
         <div class="row">
-            <h1>Hiển thị danh sách sản phẩm <a href="/me/list/trash">Thùng rác</a></h1>
-
+            {{!-- 2 trang chung 1 code nên là viết chung isShow là đang ở trang show--}}
+            {{#if_equal slug "show"}}
+               <h1 class="show__title">Danh sách sản phẩm </h1>
+                <a href="/me/list/trash" class="show__redirect">Thùng rác</a>
+            {{else}}
+                
+                <h1 class="show__title">Thùng rác</h1>
+                <a href="/me/list/show" class="show__redirect">Danh sách sản phẩm</a>
+            {{/if_equal}}
             <table class="show__table">
                 <tr>
                    <th scope="col">#</th>
                     <th scope="col">Tên</th>
                     <th scope="col">Giá</th>
-                    <th scope="col">Đánh giá</th>
-                    <th scope="col" colspan="2">Ngày tạo</th>
+                    <th scope="col">Loại</th>
+                    <th scope="col" colspan="3">Ngày tạo</th>
                 
                 </tr>
                 {{#each products}}
+                
                 <tr>
                     <td>{{@index}}</td>
-                    <td>{{this.name}}</td>
+                    <td>{{this.name}} </td>
                     <td>{{this.price}}</td>
-                    <td>{{this.evaluate}}</td>
+                    <td> {{this.category}}</td>
                     <td>{{this.createdAt}}</td>
-                    <td>
-                        <a href="/{{this.slug}}/soft-delete">
-                            Xóa
-                        </a>
-                    </td>
+                    
+                    {{#if_equal ../slug "show"}}
+                        <td>
+                            <a href="/{{this._id}}/soft-delete">Xóa</a>
+                        </td>
+                        <td>
+                            <a href="/{{this._id}}/edit">Sửa</a>
+                        </td>
+                    {{else}}
+                        <td>
+                            <a href="/{{this._id}}/delete">Xóa vĩnh viễn</a>
+                        </td>
+                        <td>
+                            <a href="/{{this._id}}/restore">Phục hồi</a>
+                        </td>
+                    {{/if_equal}}
+                   
                 </tr>
                 {{/each}}
-                
-                
             </table>
-
         </div>
     </div>
 </div>

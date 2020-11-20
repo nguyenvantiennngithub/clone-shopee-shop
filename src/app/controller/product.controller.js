@@ -3,7 +3,12 @@ const mongooseToObject = require('../../until/index.mongoose')
 class productController{
     //[GET] /
     home(req, res, next){
-        productModel.find({})
+        var filter = {}
+        console.log(req.query)
+        if (req.query.hasOwnProperty("category")){
+            filter.category = req.query.category
+        }
+        productModel.find(filter)
             .then(products=>{
                 res.render("home", {
                     products: mongooseToObject.mongoosesToObject(products)
@@ -46,22 +51,56 @@ class productController{
     }
     //[DELETE] /:slug/delete
     delete(req, res, next){
-        productModel.deleteOne({ slug: req.params.slug})
+        productModel.deleteOne({ _id: req.params.slug})
             .then(()=>{
-                res.redirect("/me/show");
+                res.redirect("/me/list/trash");
             })
             .catch((err)=>{
                 next(err);
             })
     }
+    //[DELETE] /:slug/soft-delete
     softDelete(req, res, next){
-        productModel.delete({ slug: req.params.slug})
+        productModel.delete({ _id: req.params.slug})
         .then(()=>{
-            res.redirect("/me/show");
+            res.redirect("/me/list/show");
         })
         .catch((err)=>{
             next(err);
         })
+    }
+    //[GET] /:slug/restore
+    restore(req, res, next){
+        productModel.restore({ _id: req.params.slug})
+            .then(()=>{
+                res.redirect("/me/list/trash");
+            })
+            .catch((err)=>{
+                next(err);
+            })
+    }
+    //[GET] /:slug/edit
+    edit(req, res, next){
+        productModel.findOne({ _id: req.params.slug})
+        .then((product)=>{
+            res.render("product/edit", {
+                product: mongooseToObject.mongooseToObject(product)
+            })
+        })
+        .catch((err)=>{
+            next(err);
+        })
+    }
+
+    //[POST] /:slug/update
+    update(req, res, next){
+        productModel.updateOne({ _id: req.params.slug}, req.body)
+            .then(()=>{
+                res.redirect("/");
+            })
+            .catch(err=>{
+                next(err);
+            })
     }
 }
 
