@@ -1,4 +1,18 @@
 /* Phần cho trang [GET] /slug/detail */
+.detail__breacrumb{
+	margin-bottom: 24px;
+}
+
+.detail__breacrumb-text{
+	margin-right: 8px;
+	color: #999;
+}
+
+.detail__breacrumb-link{
+	text-decoration: none;
+	color: blue;
+	margin-right: 8px;
+}
 
 .detail__container{
 	padding-top: 24px;
@@ -7,7 +21,7 @@
 
 .detail__background{
 	background-color: #F5F5F5;
-	padding-top: 50px;
+	padding-top: 24px;
 }
 
 

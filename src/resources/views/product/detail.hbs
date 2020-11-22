@@ -2,6 +2,13 @@
     <div class="detail__background">
         <div class="grid wide">
             <div class="row">
+                <div class="col l-12 detail__breacrumb">
+                    
+                    <a href="/?category={{product.category}}" class="detail__breacrumb-link">{{product.category}}</a>
+                    <span class="detail__breacrumb-text"> > </span>
+                
+                    <a href="#" class="detail__breacrumb-link">{{product.trademark}}</a>
+                </div>
                 <div class="col l-5" style="padding: 0">
                     <div class="detail__container">
                         <div class="home-product-item__img detail__product-item-img" style="background-image: url({{product.img}})"></div>
@@ -25,7 +32,7 @@
                             </div>
 
                             <div class="detail__price">
-                                <span class="detail__price-text"> {{product.price}}đ</span>
+                                <span class="detail__price-text"> {{numberWithDots product.price}}đ</span>
                             </div>
 
                              <div class="detail__color">

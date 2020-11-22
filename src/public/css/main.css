@@ -44,6 +44,37 @@ body{
 	position: relative;
 }
 
+
+.header__navbar-help{
+	position: relative;
+}
+.header__navbar-menu-list{
+	list-style: none;
+    position: absolute;
+    top: 32px;
+    left: -52px;
+    padding-left: 0;
+    z-index: 1;
+	box-shadow: 0 5px 5px #EEE;
+	background-color: #FFF;
+	display: none;
+}
+
+.header__navbar-menu-list::after{
+	content: "";
+	border-style: solid;
+	border-color: transparent transparent #FFF transparent;
+	border-width: 15px 20px 15px 20px; 
+	position: absolute;
+	top: -30px;
+    left: 74px;
+}
+
+.header__navbar-help:hover .header__navbar-menu-list{
+	display: block;
+}
+
+
 .header__navbar-user{
 	display: flex;
 	position: relative;
@@ -110,7 +141,7 @@ body{
 
 .header__navbar-user-link{
 	text-decoration: none;
-	color: #333;
+	color: #333; 
 	padding: 0 12px;
 	margin: 0px;
 	font-size: 0.9rem;

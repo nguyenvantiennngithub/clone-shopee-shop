@@ -4,14 +4,19 @@ class productController{
     //[GET] /
     home(req, res, next){
         var filter = {}
-        console.log(req.query)
         if (req.query.hasOwnProperty("category")){
             filter.category = req.query.category
         }
-        productModel.find(filter)
+        var tempProductModel =  productModel.find(filter)
+        if (req.query.hasOwnProperty("price")){
+            console.log('price')
+            tempProductModel.sort({price: req.query.price})
+        }
+        tempProductModel
             .then(products=>{
                 res.render("home", {
-                    products: mongooseToObject.mongoosesToObject(products)
+                    products: mongooseToObject.mongoosesToObject(products),
+                    filterCategory: req.query.category
                 })
             })
             .catch(err=>{
@@ -22,7 +27,6 @@ class productController{
     detail(req, res, next){
         productModel.findOne({ slug: req.params.slug })
             .then(product=>{
-                console.log(product)
                 res.render("product/detail", {
                     product: mongooseToObject.mongooseToObject(product)
                 })

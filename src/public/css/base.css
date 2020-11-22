@@ -248,3 +248,10 @@
 .pagination-item__icon{
 
 }
+
+.btn-addUrlParemeter{
+	border: none;
+	background-color: #FFF;
+	outline: none;
+	text-align: left;
+}

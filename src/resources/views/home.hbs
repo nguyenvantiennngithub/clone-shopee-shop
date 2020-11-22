@@ -1,3 +1,4 @@
+
 <div class="header__sort">
     <ul class="header__sort-list">
         <li class="header__sort-item"><a href="#"  class="header__sort-link">Liên quan</a></li>
@@ -23,14 +24,20 @@
                 <nav class="category hide-on-tablet-mobile">
                     <h3 class="category__heading">Danh mục</h3>
                     <ul class="category-list">
-                        <li class="category-item category-item--active">
-                            <a href="/?category=smart-phone" class="category-item__link">Điện thoại</a>
+                        <li class="category-item {{#if_equal filterCategory 'smart-phone'}}category-item--active {{/if_equal}}">
+                            <a href="?category=smart-phone" class="category-item__link" >Điện thoại </a>
+
+                            {{!-- <a onclick="addUrlParameters('category', 'smart-phone')" href="#" class="category-item__link">Điện thoại</a> --}}
                         </li>
-                        <li class="category-item">
-                            <a href="/?category=tablet" class="category-item__link">Máy tính bảng</a>
+                        <li class="category-item {{#if_equal filterCategory 'tablet'}}category-item--active {{/if_equal}}">
+                            <a href="?category=tablet" class="category-item__link">Máy tính bảng</a>
+
+                            {{!-- <a onclick="addUrlParameters('category', 'tablet')" href="#" class="category-item__link">Máy tính bảng</a> --}}
                         </li>
-                        <li class="category-item">
-                            <a href="/?category=laptop" class="category-item__link">Laptop</a>
+                        <li class="category-item {{#if_equal filterCategory 'laptop'}}category-item--active {{/if_equal}}">
+                            <a href="?category=laptop" class="category-item__link">Laptop</a>
+
+                            {{!-- <a onclick="addUrlParameters('category', 'laptop')" href="#" class="category-item__link">Laptop</a> --}}
                         </li>
                     </ul>
                 </nav>
@@ -121,14 +128,15 @@
                         <i class="select-lable-icon-down fa fa-angle-down"></i>
                         <ul class="select-lable-list">
                             <li class="select-lable-item">
-                                <a href="/?sort=asc" class="select-lable-link">Giá: từ Thấp đến Cao</a>
+                                {{!-- <a href="/?&price=asc" class="select-lable-link">Giá: từ Thấp đến Cao</a> --}} 
+                                <a onclick="addUrlParameter('price', 'asc')" href="#" class="select-lable-link">Giá: từ Thấp đến Cao</a>
+
                             </li>
                             <li class="select-lable-item">
-                                <a href="/?sort=desc" class="select-lable-link">Giá: từ Cao đến Thấp</a>
+                                 <a onclick="addUrlParameter('price', 'desc')" href="#" class="select-lable-link">Giá: từ Cao đến Thấp</a>
                             </li>
                         </ul>
                     </div>
-
                     <div class="home-filter__page">
                         <span class="home-filter__page-num">
                             <span class="home-filter__page-current">1</span>/14
@@ -144,10 +152,6 @@
                         </div>
                     </div>
                 </div>
-                
-
-
-
                 <div class="home-product">
                     <!-- grid -> row -> column -->
                     <div class="row home-product">
@@ -202,7 +206,7 @@
                                 <h4 class="home-product-item__name">{{this.name}}</h4>
                                 <div class="home-product-item__price">
                                     {{!-- <span class="home-product-item__price-old">1.200.000đ</span> --}}
-                                    <span class="home-product-item__price-current">{{this.price}}</span>
+                                    <span class="home-product-item__price-current">{{numberWithDots this.price}}</span>
 
                                 </div>
                                 <div class="home-product-action">
@@ -282,3 +286,35 @@
         </div>
     </div>
 </div>
+<script>
+function addUrlParameter(key, value) {
+    console.log(window.location.search);
+    var search = window.location.search
+    switch(key){
+        case 'category':{
+            if (search.includes(`${key}=smart-phone`)){
+                window.location.search = search.replace('smart-phone', value)
+            }else if (search.includes(`${key}=tablet`)){
+                window.location.search = search.replace('tablet', value)
+            }
+            else if (search.includes(`${key}=laptop`)){
+                window.location.search = search.replace('laptop', value)
+            }else{
+                window.location.search += (window.location.search == '') ? `?${key}=${value}` : `&${key}=${value}` 
+            }
+            break;
+        }
+        case 'price':{
+            if (search.includes(`${key}=desc`)){
+                window.location.search = search.replace('desc', value)
+            }else if (search.includes(`${key}=asc`)){
+                window.location.search = search.replace('asc', value)
+            }else{
+                window.location.search += (window.location.search == '') ? `?${key}=${value}` : `&${key}=${value}` 
+            }
+            break;
+        }
+    }
+    
+}
+</script>
