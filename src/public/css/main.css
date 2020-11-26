@@ -535,6 +535,15 @@ body{
 
 }
 
+.category-trademark-item{
+	padding: 12px 20px;
+	text-align: left;
+}
+
+.category-trademark-item-input{
+	margin: 0 8px 0 16px;
+}
+
 /*menu*/
 
 .header__menu{

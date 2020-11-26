@@ -12,12 +12,13 @@ const productSchema = new Schema(
         start: { type: Number, default: 0},
         evaluate: { type: Number , default: 0},
         color: { type: Array },
-        price : { type: String },
+        price : { type: Number },
         trademark: { type: String },
         category: { type: String },
         sold: { type: Number, default: 0},
         slug: { type: String, slug: 'name' },
-       
+        slugCategory: { type: String, slug: 'category' },
+        slugTrademark: { type: String, slug: 'trademark' },
     },
     {
         timestamps: true,

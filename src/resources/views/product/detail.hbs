@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col l-12 detail__breacrumb">
                     
-                    <a href="/?category={{product.category}}" class="detail__breacrumb-link">{{product.category}}</a>
+                    <a href="/?category={{product.slugCategory}}" class="detail__breacrumb-link">{{product.category}}</a>
                     <span class="detail__breacrumb-text"> > </span>
                 
-                    <a href="#" class="detail__breacrumb-link">{{product.trademark}}</a>
+                    <a href="/?category={{product.slugCategory}}&trademark={{product.trademark}}" class="detail__breacrumb-link">{{product.trademark}}</a>
                 </div>
                 <div class="col l-5" style="padding: 0">
                     <div class="detail__container">
