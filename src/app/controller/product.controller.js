@@ -1,9 +1,12 @@
 const productModel = require('../../module/product.module')
+const userModel = require('../../module/user.module')
+
 const mongooseToObject = require('../../until/index.mongoose')
 
 //hàm lấy mảng có các phần tử độc nhất là 
 //cái tên nhà sản xuất của những
 //cái loại (smart-phone, laptop, tablet) 
+
 
 class productController{
     
@@ -12,12 +15,10 @@ class productController{
         function getTrademakeOfCategoryUnique(){
             var trademarkOfCategory = []
             return productModel.find({})
-
                 .then(products=>{
                     for (var i of products){
                         if (i.slugCategory == req.query.category){
                             trademarkOfCategory.push(i.trademark);
-                            
                         }
                     }
                     return Array.from(new Set(trademarkOfCategory))
@@ -58,6 +59,11 @@ class productController{
         //biến tạm khi đọc db
         var tempProductModel =  productModel.find(filter)
         if (req.query.hasOwnProperty("price")){
+
+            var typesOfPrice = ['asc', 'desc']
+            if (typesOfPrice.indexOf(req.query.price) == -1){
+                req.query.price = 'asc'
+            }
             tempProductModel = tempProductModel.sort({price: req.query.price})
         }
         var categoryQuery = getCategoryUnique();
@@ -75,7 +81,6 @@ class productController{
             .catch(err=>{
                 next(err);
             })
-       
     }
     //[GET /:slug/detail
     detail(req, res, next){

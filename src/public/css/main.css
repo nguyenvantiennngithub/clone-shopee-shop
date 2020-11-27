@@ -367,10 +367,19 @@ body{
 	display: block;
 }
 
+.header__navbar-auth{
+	text-decoration: none;
+	color: #FFF;
+}
 /*authentication modal*/
-
+.container-form{
+	margin: 0 auto;
+}
 .auth-form{
 	width: 500px;
+	margin: 0 auto;
+	background-color:#FFF;
+	border-radius: 4px;
 }
 
 .auth-form__container{
@@ -382,7 +391,6 @@ body{
 	align-items: center;
 	justify-content: space-between;
 	padding: 0px 12px;
-	margin-top: 12px;
 }
 
 .auth-form__heading{
@@ -446,8 +454,8 @@ body{
 }
 
 .auth-form__socials{
-	background-color: #F5F5F5;
-	padding: 12px 36px;
+	background-color: #FFF;
+	padding: 24px 36px;
 	display: flex;
 	justify-content: space-between;
 }

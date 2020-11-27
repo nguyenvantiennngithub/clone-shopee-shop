@@ -317,3 +317,110 @@
     </div>
 </div>
 
+<div class="control-modal" id="form-login" hidden> 
+		
+    <div class="modal"> 
+      <div class="modal__overlay"></div>
+        <div class="modal__body"> 
+            
+
+        <!-- Authentication form -->
+       
+            
+              <!-- login  -->
+            <form action="/auth/login" method="POST">
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                        <h3 class="auth-form__heading">Đăng Nhập</h3>
+                        <span class="auth-form__switch-btn" name="register">Đăng Ký</span>
+                    </div>
+                    <div class="auth-form__form">
+                        <div class="auth-form__group">
+                            <input class="auth-form__input" type="text" placeholder="Enter Email" name="username">
+                        </div>	
+                        <div class="auth-form__group">
+                            <input class="auth-form__input" type="password" placeholder="Enter password" name="password">
+                        </div>	
+                    </div>
+                    <div class="auth-form__aside">
+                        <div class="auth-form__help">
+                            <a class="auth-form__help-link auth-help-forgot" href="#">Fogot password</a>
+                            <span class="auth-form__help-link-separate"></span>
+                            <a class="auth-form__help-link" href="#">Need help?</a>
+                        </div>
+                    </div>
+                    <div class="auth-form__controls">
+                        <button class="btn auth-form__control-back btn-normal">TRỞ LẠI</button>
+                        <button type="submit" class="btn btn--primary" id="submit-login">ĐĂNG NHẬP</button>
+                    </div>
+                    </div>
+                    <div class="auth-form__socials">
+                        <a class="auth-form__socials--facebook btn btn--size-s btn--with-icon" href="#">
+                            <i class="auth-form__social-icon fa fa-facebook-square"></i>
+                            <span class="auth-form__socails-text-facebook">login with facebook</span>
+                        </a>
+                        <a class="auth-form__socials--google btn btn--size-s btn--with-icon" href="#">
+                        <i class="auth-form__social-icon fa fa-google"></i>
+                            <span class="auth-form__socails-text-google">login with google</span>
+                        </a>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="control-modal" id="form-register" hidden> 
+		
+    <div class="modal"> 
+      <div class="modal__overlay"></div>
+        <div class="modal__body"> 
+            <!-- register -->
+            <form action="">
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                            <h3 class="auth-form__heading">Đăng Ký</h3>
+                            <span class="auth-form__switch-btn" name="login">Đăng nhập</span>
+                        </div>
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <input class="auth-form__input" type="text" placeholder="Enter Email" id="username">
+                            </div>	
+                            <div class="auth-form__group">
+                                <input class="auth-form__input" type="password" placeholder="Enter password" id="password">
+                            </div>
+                            <div class="auth-form__group">
+                                <input class="auth-form__input" type="password" placeholder="Enter again password">
+                            </div>
+                        </div>
+                        <div class="auth-form__aside">
+                            <p class="ath-form__policy-text">
+                                Bằng cái ajfklsajfdsadsaklasjfklasjlf, jnfajfdas
+                                <a class="auth-form__text-link" href="#">fjakjfsaadsadsadsad</a> &
+                                <a class="auth-form__text-link" href="#">fjakjfsaaddấdsa</a> 
+                            </p>
+                        </div>
+                        <div class="auth-form__controls">
+                            <button class="btn auth-form__control-back btn-normal">TRỞ LẠI</button>
+                            <button class="btn btn--primary">ĐĂNG KÝ</button>
+                        </div> 
+                    </div>
+                    <div class="auth-form__socials">
+                        <a class="auth-form__socials--facebook btn btn--size-s btn--with-icon" href="#">
+                            <i class="auth-form__social-icon fa fa-facebook-square"></i>
+                            <span class="auth-form__socails-text-facebook">connect with facebook</span>
+                        </a>
+                        <a class="auth-form__socials--google btn btn--size-s btn--with-icon" href="#">
+                        <i class="auth-form__social-icon fa fa-google"></i>
+                            <span class="auth-form__socails-text-google">connect with google</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+            

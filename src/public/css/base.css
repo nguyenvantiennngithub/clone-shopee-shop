@@ -105,11 +105,10 @@
 }
 
 .modal__body{
-	margin: auto;
-	background-color: #FFF;
-	position: relative;
-	z-index: 1;
+	/* background-color: #FFF; */
+	background-color: #F5F5F5;
 	border-radius: 5px;
+	padding: 64px 0;
 }
 	
 /*button style*/
@@ -144,6 +143,9 @@
 .btn.btn--primary{
 	background-color: var(--primary-color);
 	color: #FFF;
+}
+
+.auth-form{
 }
 
 .auth-form__control-back{
@@ -254,4 +256,9 @@
 	background-color: #FFF;
 	outline: none;
 	text-align: left;
+}
+
+.a{
+	text-decoration: none;
+	color: #333;
 }
