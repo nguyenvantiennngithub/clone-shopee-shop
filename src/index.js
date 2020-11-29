@@ -7,6 +7,7 @@ const connect = require('./config/db/index.db')
 const jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 const app = express()
+const cookieParser = require('cookie-parser')
 // app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('.hbs', exphbs({
@@ -35,6 +36,7 @@ app.use(
     }),
 );
 app.use(express.json());
+app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 connect();

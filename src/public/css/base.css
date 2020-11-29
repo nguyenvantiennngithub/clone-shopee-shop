@@ -262,3 +262,9 @@
 	text-decoration: none;
 	color: #333;
 }
+
+.message-error,
+.message-error-auth{
+	color: red; 
+	font-size: 14px;
+}

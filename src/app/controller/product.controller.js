@@ -1,11 +1,15 @@
 const productModel = require('../../module/product.module')
 const userModel = require('../../module/user.module')
-
+const mongoose = require('mongoose');
+const slug = require('mongoose-slug-generator');
+const Schema = mongoose.Schema;
+mongoose.plugin(slug);
 const mongooseToObject = require('../../until/index.mongoose')
 
 //hàm lấy mảng có các phần tử độc nhất là 
 //cái tên nhà sản xuất của những
 //cái loại (smart-phone, laptop, tablet) 
+
 
 
 class productController{
@@ -52,8 +56,12 @@ class productController{
         }
 
         if (req.query.hasOwnProperty("trademark")){
-            currentTrademark = req.query.trademark
-            filter.trademark = req.query.trademark
+            if (req.query.trademark != "all"){
+                currentTrademark = req.query.trademark
+                filter.trademark = req.query.trademark
+            }
+        }else{
+            currentTrademark = undefined
         }
 
         //biến tạm khi đọc db
@@ -66,8 +74,11 @@ class productController{
             }
             tempProductModel = tempProductModel.sort({price: req.query.price})
         }
+        console.log("cookie", req.cookies)
         var categoryQuery = getCategoryUnique();
         var trademarkQuery = getTrademakeOfCategoryUnique()
+
+        console.log("dasdsa", req.signedCookies.idUser)
         Promise.all([categoryQuery, trademarkQuery, tempProductModel])
             .then(([categoryUnique, trademarkUnique, products])=>{
                 res.render("home", {
@@ -75,7 +86,8 @@ class productController{
                     filterCategory: req.query.category,
                     trademarkOfCategory: trademarkUnique,
                     categoryUnique: categoryUnique,
-                    currentTrademark: currentTrademark
+                    currentTrademark: currentTrademark,
+                    idUser: req.signedCookies.idUser
                 })
             })
             .catch(err=>{
@@ -156,8 +168,16 @@ class productController{
     }
 
     //[POST] /:slug/update
+
     update(req, res, next){
+        function generate_slug(text) {
+            return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-').trim();
+        };
+        
         req.body.color = req.body.color.split(",")
+        req.body.slug = generate_slug(req.body.name)
+        req.body.slugCategory = generate_slug(req.body.category)
+        req.body.slugTrademark = generate_slug(req.body.trademark)
         productModel.updateOne({ _id: req.params.slug}, req.body)
             .then(()=>{
                 res.redirect("/");

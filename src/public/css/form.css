@@ -1,0 +1,16 @@
+.auth-form__group.invalid .auth-form__input {
+    border-color: #f33a58;
+}
+.auth-form__group .message-error {
+    color: #f33a58;
+    margin-bottom: 16px;
+}
+
+.auth-form__group:hover {
+    border-color: #1dbfaf;
+}
+
+.auth-form__input{
+    outline: none;
+}
+

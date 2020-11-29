@@ -412,10 +412,14 @@ body{
 	margin-top: 16px;	
 }
 
+.auth-form__group{
+	margin-bottom: 16px;
+}
+
 .auth-form__input{
 	height: 40px;
 	width: 100%;
-	margin-bottom: 16px;
+	margin-bottom: 4px;
 	padding: 0 12px;
 	font-size: 1.2rem;
 	border: 1px solid var(--border-color);

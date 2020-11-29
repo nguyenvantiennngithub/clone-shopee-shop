@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/detail.css">
 	<link rel="stylesheet" type="text/css" href="/css/show.css">
 	<link rel="stylesheet" type="text/css" href="/css/create.css">
+	<link rel="stylesheet" type="text/css" href="/css/form.css">
+
     <link rel="stylesheet" href="/css/style.css">
     
 
@@ -33,10 +35,18 @@
     
     
     <script type="text/javascript" src="/js/home.js"></script>
-    <script type="text/javascript" src="/js/login.js"></script>
+    <script type="text/javascript" src="/js/formValidator.js"></script>
 
     <script type="text/javascript">
-        
+        Validator({
+            form: '#form-login',
+            formGroup: '.auth-form__group',
+            messageElement: '.message-error',
+            rules: [
+                Validator.isRequired('#username', 'Vui lòng nhập mục này'),
+                Validator.minLength('#password', 6, 'Vui lòng nhập trên 6 ký tự'),
+            ]
+        })
     </script>
 </body>
 

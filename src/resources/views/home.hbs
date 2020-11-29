@@ -27,24 +27,18 @@
                         <li class="category-item {{#if_equal filterCategory undefined}}category-item--active {{/if_equal}}">
                             <a href="/" class="category-item__link" >Mặc định </a>
 
-                            {{!-- <a onclick="addUrlParameters('category', 'smart-phone')" href="#" class="category-item__link">Điện thoại</a> --}}
                         </li>
                         {{!--  --}}
                         <li class="category-item {{#if_equal filterCategory 'dien-thoai'}}{{!-- {{this(categoryUnique)}} --}}category-item--active {{/if_equal}}">
                             <a href="?category=dien-thoai" class="category-item__link" >Điện thoại </a>
-
-                            {{!-- <a onclick="addUrlParameters('category', 'smart-phone')" href="#" class="category-item__link">Điện thoại</a> --}}
                         </li>
                         <li class="category-item {{#if_equal filterCategory 'may-tinh-bang'}}category-item--active {{/if_equal}}">
                             <a href="?category=may-tinh-bang" class="category-item__link">Máy tính bảng</a>
-
-                            {{!-- <a onclick="addUrlParameters('category', 'tablet')" href="#" class="category-item__link">Máy tính bảng</a> --}}
                         </li>
                         <li class="category-item {{#if_equal filterCategory 'laptop'}}category-item--active {{/if_equal}}">
                             <a href="?category=laptop" class="category-item__link">Laptop</a>
-
-                            {{!-- <a onclick="addUrlParameters('category', 'laptop')" href="#" class="category-item__link">Laptop</a> --}}
                         </li>
+                        
                     </ul>
                 </nav>
                 
@@ -54,17 +48,21 @@
                     <ul class="category-list">
                         {{#each trademarkOfCategory}}
                         <li class="category-trademark-item">
-                            {{#if_equal this ../currentTrademark}}
-                                <input class="category-trademark-item-input" onclick="check()" checked type="radio" id="{{this}}" name="trademark" value="{{this}}">
-                            {{/if_equal}}
-                            {{#if_not_equal this ../currentTrademark}}
-                                <input class="category-trademark-item-input" onclick="check()" type="radio" id="{{this}}" name="trademark" value="{{this}}">
-                            {{/if_not_equal}}
+                            <input class="category-trademark-item-input" onclick="check()" type="radio" id="{{this}}" name="trademark" value="{{this}}"
+                                {{#if_equal this ../currentTrademark}}
+                                    checked 
+                                {{/if_equal}}>
+                            
                             <label for="{{this}}">{{this}}</label>
                         </li>
                         {{/each}}
                         <li class="category-trademark-item">
-                            <input class="category-trademark-item-input" type="radio" onclick="check()" id="default" name="trademark" value="default">
+                            <input class="category-trademark-item-input" type="radio" onclick="check()" id="default" name="trademark" value="all"
+                                {{#if currentTrademark}}
+                                    
+                                {{else}}
+                                    checked
+                                {{/if}}>
                             <label for="default">Tất cả</label>
                         </li>
                     </ul>
@@ -257,7 +255,7 @@
                                 {{!-- Phần tên thương hiệu và tên nước sản xuất --}}
                                 {{!-- <div class="home-product-item__origin">
                                     <span class="home-product-item__brand">{{this.trademark}}</span>
-                                    <span class="home-product-item__origin-name">{{this.}}</span>
+                                    <span class="home-product-item__origin-name">{{this.category}}</span>
                                 </div> --}}
 
 
@@ -316,7 +314,7 @@
         </div>
     </div>
 </div>
-
+{{!-- 
 <div class="control-modal" id="form-login" hidden> 
 		
     <div class="modal"> 
@@ -423,4 +421,4 @@
         </div>
     </div>
 </div>
-            
+             --}}

@@ -11,17 +11,31 @@ class authController{
         userModel.findOne({name: req.body.username, password: req.body.password})
             .then(user=>{
                 if (!user){
+                    console.log("djsaldksadjklsajdlk")
                     res.render('auth/login',{
-                        messageError: 'Nhập sai email hoặc mật khẩu'
+                        messageError: 'Nhập sai email hoặc mật khẩu',
+                        username: req.body.username, 
+                        password: req.body.password
                     })
                     return;
                 }
-                res.send("Dang nhap thanh cong")
+
+                res.cookie('idUser', user._id, {signed: true})
+
+                res.redirect("/")
             })
             .catch(err=>{
                 next(err);
             })
+        }
+    
+    //[GET] auth/logout
+    logout(req, res, next){
+        res.clearCookie('idUser');
+        res.redirect('/')
     }
+    
+    //[GET] auth/register
     register(req, res, next){
         res.render("auth/register")
     }
