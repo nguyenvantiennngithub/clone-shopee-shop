@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 const productSchema = new Schema(
     {
+        idUser: { type: String},
         name: { type: String },
         description: { type: String },
         img: { type: String },

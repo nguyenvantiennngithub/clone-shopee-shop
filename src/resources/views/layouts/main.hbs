@@ -44,9 +44,32 @@
             messageElement: '.message-error',
             rules: [
                 Validator.isRequired('#username', 'Vui lòng nhập mục này'),
+                Validator.isRequired('#password', 'Vui lòng nhập mục này'),
                 Validator.minLength('#password', 6, 'Vui lòng nhập trên 6 ký tự'),
             ]
         })
+        Validator({
+            form: '#form-register',
+            formGroup: '.auth-form__group',
+            messageElement: '.message-error',
+            rules: [
+                Validator.isRequired('#username', 'Vui lòng nhập mục này'),
+
+                Validator.isRequired('#password', 'Vui lòng nhập mục này'),
+                Validator.minLength('#password', 6, 'Vui lòng nhập trên 6 ký tự'),
+                
+                Validator.isRequired('#passwordConfig', 'Vui lòng nhập mục này'),
+                Validator.minLength('#passwordConfig', 6, 'Vui lòng nhập trên 6 ký tự'),
+
+                Validator.passwordConfig('#passwordConfig', 'Mật khẩu không trùng khớp', function(){
+                    return document.querySelector('#password').value
+                }),
+
+            ]
+        })
+
+
+        
     </script>
 </body>
 

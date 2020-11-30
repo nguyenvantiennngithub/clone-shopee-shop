@@ -1,24 +1,29 @@
 
 <div class="modal__body"> 
     <!-- register -->
-    <form action="">
+    <form action="/auth/register" method="POST" id="form-register">
         <div class="auth-form">
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Đăng Ký</h3>
-                    <span class="auth-form__switch-btn" name="login">Đăng nhập</span>
+                    <span class="auth-form__switch-btn" name="login">
+                        <a href="/auth/login" class="auth-form__switch-btn-link">Đăng nhập</a>
+                    </span>
                 </div>
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input class="auth-form__input" type="text" placeholder="Enter Email" id="username">
+                        <input class="auth-form__input" type="text" placeholder="Enter Email" id="username" name="name">
+                        <span class="message-error"></span>	
                     </div>	
                     <div class="auth-form__group">
-                        <input class="auth-form__input" type="password" placeholder="Enter password" id="password">
+                        <input class="auth-form__input" type="password" placeholder="Enter password" id="password"  name="password">
+                        <span class="message-error"></span>	
                     </div>
                     <div class="auth-form__group">
-                        <input class="auth-form__input" type="password" placeholder="Enter again password">
+                        <input class="auth-form__input" type="password" placeholder="Enter again password" id="passwordConfig" name="passwordConfig">
+                        <span class="message-error"></span>	
                     </div>
-                    <span style="color: red; font-size: 14px">{{messageError}}</span>
+                   <span class="message-error-auth">{{messageError}}</span>	
                 </div>
                 <div class="auth-form__aside">
                     <p class="ath-form__policy-text">
@@ -45,4 +50,4 @@
             </div>
         </div>
     </form>
-</div
+</div>

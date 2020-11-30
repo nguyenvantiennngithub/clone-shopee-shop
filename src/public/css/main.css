@@ -86,6 +86,7 @@ body{
 	border-radius: 50%;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	margin-top: -3px;
+	background-repeat: no-repeat;
 }
 
 .header__navbar-user-name{
@@ -402,6 +403,11 @@ body{
 	font-size: 1rem;
 	color: var(--primary-color);
 	font-weight: 500;
+}
+
+.auth-form__switch-btn-link{
+	text-decoration: none;
+	color: var(--primary-color)
 }
 
 .auth-form__switch-btn:hover{

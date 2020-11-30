@@ -74,11 +74,9 @@ class productController{
             }
             tempProductModel = tempProductModel.sort({price: req.query.price})
         }
-        console.log("cookie", req.cookies)
         var categoryQuery = getCategoryUnique();
         var trademarkQuery = getTrademakeOfCategoryUnique()
-
-        console.log("dasdsa", req.signedCookies.idUser)
+        
         Promise.all([categoryQuery, trademarkQuery, tempProductModel])
             .then(([categoryUnique, trademarkUnique, products])=>{
                 res.render("home", {
@@ -87,7 +85,6 @@ class productController{
                     trademarkOfCategory: trademarkUnique,
                     categoryUnique: categoryUnique,
                     currentTrademark: currentTrademark,
-                    idUser: req.signedCookies.idUser
                 })
             })
             .catch(err=>{
@@ -115,6 +112,7 @@ class productController{
     //[POST] /save
     save(req, res, next){
         req.body.color = req.body.color.split(",")
+        req.body.idUser = req.signedCookies.idUser;
         const product = new productModel(req.body);
         product.save()
             .then(()=>{
@@ -170,10 +168,24 @@ class productController{
     //[POST] /:slug/update
 
     update(req, res, next){
+        function change_alias(alias) {
+            var str = alias;
+            str = str.toLowerCase();
+            str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
+            str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+            str = str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+            str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
+            str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+            str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+            str = str.replace(/đ/g,"d");
+            str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
+            str = str.replace(/ + /g," ");
+            return str;
+        }
         function generate_slug(text) {
+            text = change_alias(text)
             return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-').trim();
         };
-        
         req.body.color = req.body.color.split(",")
         req.body.slug = generate_slug(req.body.name)
         req.body.slugCategory = generate_slug(req.body.category)

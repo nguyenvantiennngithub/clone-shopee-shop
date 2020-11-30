@@ -5,6 +5,7 @@ const path = require('path')
 const router  = require('./router/index.router')
 const connect = require('./config/db/index.db')
 const jsdom = require("jsdom");
+const middleware = require('./middleware/middleware')
 var JSDOM = jsdom.JSDOM;
 const app = express()
 const cookieParser = require('cookie-parser')
@@ -40,6 +41,7 @@ app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 connect();
+app.use(middleware.getUser);
 router(app);
 
 

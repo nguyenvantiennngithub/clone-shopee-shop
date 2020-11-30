@@ -11,7 +11,6 @@ class authController{
         userModel.findOne({name: req.body.username, password: req.body.password})
             .then(user=>{
                 if (!user){
-                    console.log("djsaldksadjklsajdlk")
                     res.render('auth/login',{
                         messageError: 'Nhập sai email hoặc mật khẩu',
                         username: req.body.username, 
@@ -42,7 +41,27 @@ class authController{
 
     //[POST] auth/login
     checkRegister(req, res, next){
-       
+       userModel.findOne({name: req.body.name})
+        .then((user)=>{
+            if (user){
+                res.render("auth/register",{
+                    messageError: 'Tên tài khoảng đã tồn tại'
+                })
+                return;
+            }else{
+                const newUser = new userModel(req.body);
+                newUser.save()
+                    .then(()=>{
+                        res.redirect('/auth/login')
+                    })
+                    .catch(err=>{
+                        next(err)
+                    })  
+            }
+        })
+        .catch(err=>{
+            next(err)
+        })
     }
    
 }

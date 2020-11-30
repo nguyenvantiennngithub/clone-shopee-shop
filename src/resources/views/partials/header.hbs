@@ -51,23 +51,24 @@
                     </a>	
                 </li>
                 <li class="header__navbar-item header__navbar-help">
-                    <a href="#" class="header__navbar-item-link">+  Menu</a>
-                    <ul class="header__navbar-menu-list">
-                        <li class="header__navbar-user-item">
-                            <a href="/me/list/show" class="header__navbar-user-link">Xem danh sách</a>
-                        </li>
-                        <li class="header__navbar-user-item">
-                            <a href="/create" class="header__navbar-user-link">Thêm sản phẩm</a>
-                        </li>
-                    </ul>
+                    <a href="#" class="header__navbar-item-link"><i class="header__navbar-item-icon fa fa-question-circle"></i>Trợ giúp</a>
                 </li>
-             
-                
-                <!-- if sign -->
-                {{#if idUser}}
+                {{#if user}}
+                    <li class="header__navbar-item header__navbar-help">
+                        <a href="#" class="header__navbar-item-link">+  Menu</a>
+                        <ul class="header__navbar-menu-list">
+                            <li class="header__navbar-user-item">
+                                <a href="/me/list/show" class="header__navbar-user-link">Xem danh sách</a>
+                            </li>
+                            <li class="header__navbar-user-item">
+                                <a href="/create" class="header__navbar-user-link">Thêm sản phẩm</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- if sign -->
                     <li class="header__navbar-item header__navbar-user">
                         <img src="/img/Anhconheo.png" class="header__navbar-user-img">
-                        <span class="header__navbar-user-name">Văn Tiếnnn</span>
+                            <span class="header__navbar-user-name">{{user.name}}</span>
                         <ul class="header__navbar-user-list">
                             <li class="header__navbar-user-item">
                                 <a href="/me/list/show" class="header__navbar-user-link">Xem danh sách</a>
@@ -84,7 +85,7 @@
                         </ul>
                     </li>
                 {{else}}
-                     <!-- if no sign -->
+                    <!-- if no sign -->
                     <li class="header__navbar-signed header__navbar-control header__navbar-item header__navbar-item--saparate" name="register">
                         <a href="/auth/register" class="header__navbar-auth">Đăng ký</a>
                     </li>
