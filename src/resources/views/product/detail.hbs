@@ -1,5 +1,6 @@
 <div class="app__container">
     <div class="detail__background">
+       
         <div class="grid wide">
             <div class="row">
                 <div class="col l-12 detail__breacrumb">
@@ -7,7 +8,7 @@
                     <a href="/?category={{product.slugCategory}}" class="detail__breacrumb-link">{{product.category}}</a>
                     <span class="detail__breacrumb-text"> > </span>
                 
-                    <a href="/?category={{product.slugCategory}}&trademark={{product.trademark}}" class="detail__breacrumb-link">{{product.trademark}}</a>
+                    <a href="/?category={{product.slugCategory}}&brand={{product.trademark}}" class="detail__breacrumb-link">{{product.trademark}}</a>
                 </div>
                 <div class="col l-5" style="padding: 0">
                     <div class="detail__container">
@@ -69,7 +70,7 @@
                             
                             <div class="detail__color">
                                 <div class="detail__submit-add">
-                                    <button class="detail__submit-add-btn">
+                                    <button class="detail__submit-add-btn" id="add-cart">
                                         <span class="detail__submit-add-text">Thêm vào giỏ hàng</span>
                                     </button>
                                 </div>
@@ -92,4 +93,8 @@
         </div>
        
     </div>
+</div>
+
+ <div class="alert">
+    <span class="alert-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>
 </div>

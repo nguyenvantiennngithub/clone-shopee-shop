@@ -7,11 +7,11 @@ class meController{
         var tempProductModel;
         switch(req.params.slug){
             case 'show':{
-                tempProductModel = productModel.find({})
+                tempProductModel = productModel.find({idUser: req.signedCookies.idUser})
                 break;
             }
             case 'trash':{
-                tempProductModel = productModel.findDeleted({})
+                tempProductModel = productModel.findDeleted({idUser: req.signedCookies.idUser})
                 break;
             }
         }

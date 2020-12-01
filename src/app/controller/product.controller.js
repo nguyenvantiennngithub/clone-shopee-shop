@@ -16,6 +16,7 @@ class productController{
     
     //[GET] /
     home(req, res, next){
+        // lấy ra từng cái trademark với category tương ứng
         function getTrademakeOfCategoryUnique(){
             var trademarkOfCategory = []
             return productModel.find({})
@@ -31,7 +32,7 @@ class productController{
                     next(err);
                 })
         }
-
+        // lấy ra category  
         function getCategoryUnique(){
             var categoryUniqueArray = []
             return productModel.find({})
@@ -70,7 +71,9 @@ class productController{
 
             var typesOfPrice = ['asc', 'desc']
             if (typesOfPrice.indexOf(req.query.price) == -1){
+                req.originalUrl = req.originalUrl.replace(req.query.price, 'asc')
                 req.query.price = 'asc'
+                console.log(req.originalUrl)
             }
             tempProductModel = tempProductModel.sort({price: req.query.price})
         }
@@ -166,8 +169,8 @@ class productController{
     }
 
     //[POST] /:slug/update
-
     update(req, res, next){
+        //hàm bỏ dấu tiếng việt
         function change_alias(alias) {
             var str = alias;
             str = str.toLowerCase();
@@ -182,10 +185,13 @@ class productController{
             str = str.replace(/ + /g," ");
             return str;
         }
+        //tạo slug bằng hàm
         function generate_slug(text) {
             text = change_alias(text)
             return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-').trim();
         };
+
+        //update slug 
         req.body.color = req.body.color.split(",")
         req.body.slug = generate_slug(req.body.name)
         req.body.slugCategory = generate_slug(req.body.category)
