@@ -3,7 +3,7 @@ const productController  = require('../app/controller/product.controller')
 const middleware = require('../middleware/middleware')
 const router = express.Router();
 router.get("/", productController.home)
-router.post('/save', middleware.checkLogin, productController.save)
+router.post('/save', productController.save)
 router.get('/create', middleware.checkLogin, productController.create)
 router.post("/:slug/update", middleware.checkLogin, productController.update)
 router.get("/:slug/soft-delete", middleware.checkLogin, productController.softDelete)

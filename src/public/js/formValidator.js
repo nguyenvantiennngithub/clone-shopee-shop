@@ -13,13 +13,27 @@ function Validator(options){
 
     //Hàm kiểm tra xem input.value có đúng với yêu câu chưa
     function Validate(input, rule, messageElement){
-        // console.log(input)
         var rules = ruleSelector[rule.selector]
         for (var i = 0; i < rules.length; i++){
             var messageError = rules[i](input.value)
-            if (messageError){
-                break;
+
+             switch(input.type){
+                case 'radio':
+                case 'checkbox':{
+                    messageError = rules[i]
+                        (formElement.querySelector(rule.selector + ':checked'))
+                    break
+                }
+                
+                default:{
+                    messageError = rules[i](input.value)
+                    if (messageError){
+                        break;
+                    }
+                }
             }
+
+            
         }
         if (messageError){
             getParentForm(input, options.formGroup).classList.add('invalid')
@@ -114,3 +128,8 @@ Validator.passwordConfig = function(selector, message, password){
         }
     }
 }
+
+
+
+
+

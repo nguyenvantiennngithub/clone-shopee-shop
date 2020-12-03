@@ -93,10 +93,14 @@
 	background-color:#FFF;
 	border: 1px solid #EEE;
 	font-size: 0.9rem;
+	outline: none;
 }
 
-.detail__quantity-label{
+.detail__color-radio-btn.active{
+	border: 1px solid var(--primary-color);
+	
 }
+
 
 .detail__quantity-input{
 	width: 100px;
@@ -115,13 +119,15 @@
 	border-radius: 4px;
 	padding: 8px 24px;
 	outline: none;
-
 }
 
 .detail__submit-add-text{
 	font-size: 1rem;
+	text-decoration: none;
 }
-
+.detail__submit-add-text.detail__submit-add-btn-left{
+	color: #d0011b;
+}
 .detail__submit-buy-btn{
 	width: 184px;
 	height: 48px;

@@ -3,10 +3,25 @@ const mongooseDelete = require('mongoose-delete');
 const slug = require('mongoose-slug-generator');
 const Schema = mongoose.Schema;
 mongoose.plugin(slug);
+
+const cartSchema = new mongoose.Schema(
+    {
+        name: {type: String},
+        img: { type: String},
+        price: {type: Number},
+        quantity: { type: Number},
+        color: { type: String},
+        idProduct: {type: String}
+    }
+);
+
+
 const userSchema = new Schema(
     {
         name: { type: String },
-        password: { type: String}
+        password: { type: String},
+        carts: { type: Array},
+        isPaid: { type: Boolean, default: false}
     },
     {
         timestamps: true,
@@ -14,8 +29,6 @@ const userSchema = new Schema(
 );
 
 userSchema.plugin(mongooseDelete, {
-    deletedAt: true,
-    deletedBy: true,
     overrideMethods: 'all',
     validateBeforeDelete: true,
 });

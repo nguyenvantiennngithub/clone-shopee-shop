@@ -282,12 +282,12 @@
 }
 
 .alert.pushIn{
-	animation: pushIn ease-out 0.5s;
+	animation: pushIn ease-out 0.4s;
 	transform: translateX(0%);
 }
 
 .alert.pushOut{
-	animation: pushOut ease-out 0.5s;
+	animation: pushOut ease-out 0.4;
 	transform: translateX(100%);
 }
 

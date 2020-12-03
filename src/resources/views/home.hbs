@@ -46,19 +46,20 @@
                 <nav class="category hide-on-tablet-mobile">
                     <h3 class="category__heading">Hãng sản xuất</h3>
                     <ul class="category-list">
-                        {{#each trademarkOfCategory}}
-                        <li class="category-trademark-item">
-                            <input class="category-trademark-item-input" onclick="check()" type="radio" id="{{this}}" name="trademark" value="{{this}}"
-                                {{#if_equal this ../currentTrademark}}
+                        {{#each brandOfCategory}}
+                        <li class="category-brand-item">
+                            <input class="category-brand-item-input" onclick="check()" type="radio" id="{{this}}" name="brand" value="{{this}}"
+                                {{#if_equal this ../currentBrand}}
                                     checked 
                                 {{/if_equal}}>
                             
                             <label for="{{this}}">{{this}}</label>
                         </li>
+                        
                         {{/each}}
-                        <li class="category-trademark-item">
-                            <input class="category-trademark-item-input" type="radio" onclick="check()" id="default" name="trademark" value="all"
-                                {{#if currentTrademark}}
+                        <li class="category-brand-item">
+                            <input class="category-brand-item-input" type="radio" onclick="check()" id="default" name="brand" value="all"
+                                {{#if currentBrand}}
                                     
                                 {{else}}
                                     checked

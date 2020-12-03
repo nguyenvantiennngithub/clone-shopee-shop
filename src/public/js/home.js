@@ -20,19 +20,21 @@ function addUrlParameter(key, value) {
 }
 
 function check(){
-    var inputs = document.querySelectorAll('.category-trademark-item-input')
+    var inputs = document.querySelectorAll('.category-brand-item-input')
     
-    var flag = false;
+    //lập qua thẻ checkbox
     Array.from(inputs).forEach((input)=>{
+        //tìm xem checkbox nào checked
         if (input.checked == true){
-            if (search.includes('trademark')){
+            if (search.includes('brand')){ //nếu đã có thì replace nó
                 Array.from(inputs).forEach(inputt=>{
-                    if (search.includes(`trademark=${inputt.value}`)){
+                    if (search.includes(`brand=${inputt.value}`)){
                         window.location.search = search.replace(`${inputt.value}`, `${input.value}`)
                     }
                 })
+            //nếu chưa thì thêm vào
             }else{
-                window.location.search += (window.location.search == '') ? `?trademark=${input.value}` : `&trademark=${input.value}` 
+                window.location.search += (window.location.search == '') ? `?brand=${input.value}` : `&brand=${input.value}`     
             }
         }
 

@@ -11,14 +11,22 @@ class middleware{
         next()
     }
 
-    async getUser(req, res, next){
+    async getInfo(req, res, next){
          if (req.signedCookies.idUser){
             await userModel.findOne({_id: req.signedCookies.idUser})
                 .then(user=>{
                     if (user){
                         res.locals.user = {
-                         name: user.name,
+                            name: user.name,
                         }
+                        res.locals.carts = user.carts
+                        var countQuantityInCart = 0
+                        user.carts.forEach(function(cart){
+                            if(cart.isPaid === false){
+                                countQuantityInCart++;
+                            }
+                        })
+                        res.locals.quantityInCart = countQuantityInCart
                     }
                 })
                 .catch(err=>{

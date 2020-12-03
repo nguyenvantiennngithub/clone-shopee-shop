@@ -1,4 +1,7 @@
+
+  
 <div class="app__container">
+    
     <div class="detail__background">
        
         <div class="grid wide">
@@ -8,7 +11,7 @@
                     <a href="/?category={{product.slugCategory}}" class="detail__breacrumb-link">{{product.category}}</a>
                     <span class="detail__breacrumb-text"> > </span>
                 
-                    <a href="/?category={{product.slugCategory}}&brand={{product.trademark}}" class="detail__breacrumb-link">{{product.trademark}}</a>
+                    <a href="/?category={{product.slugCategory}}&brand={{product.brand}}" class="detail__breacrumb-link">{{product.brand}}</a>
                 </div>
                 <div class="col l-5" style="padding: 0">
                     <div class="detail__container">
@@ -16,73 +19,79 @@
                     </div>
                 </div>
                 <div class="col l-7" style="padding: 0">
-                    <div class="detail__container">
-                        <div class="detail__heading">
-                            <p class="detail__heading-text">{{product.name}}</p>
-                        </div>
-                        <div>
-                            <div class="detail__evaluate">
-                                <div class="home-product-item__rating detail__rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <span class="detail__count-rating">( xem 0 đánh giá )</span>
+                    <form action="/cart/{{product._id}}/add-cart" method="POST" id="form-add-cart">
+                        <div class="detail__container">
+                            <div class="detail__heading">
+                                <p class="detail__heading-text">{{product.name}}</p>
                             </div>
-
-                            <div class="detail__price">
-                                <span class="detail__price-text"> {{numberWithDots product.price}}đ</span>
-                            </div>
-
-                             <div class="detail__color">
-                                <span class="detail__target">Vận chuyển: </span>
-                                <div class="detail__delivery">
-                                    <span >
-                                        Miễn phí vận chuyển
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="detail__color">
-                                <span class="detail__target">Xu: </span>
-                                <div class="detail__delivery">
-                                    <span >
-                                        Mua hàng và tích 10.000 Shopee Xu
-                                    </span>
-                                </div> 
-                            </div>
-
-                            <div class="detail__color">
-                                <span class="detail__target">Màu sắc: </span> 
-                                {{#each product.color}}
-                                    <div class="detail__color-radio">
-                                        <button class="detail__color-radio-btn"> {{this}} </button>
+                            <div>
+                                <div class="detail__evaluate">
+                                    <div class="home-product-item__rating detail__rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     </div>
-                                {{/each}}
-                            </div>
-
-                            <div class="detail__color">
-                                <label for="quantity" class="detail__quantity-label detail__target">Số lượng: </label>
-                                <input type="number" class="detail__quantity-input" id="quantity" name="quantity" min="0" step="1" value="0">
-                            </div>
-                            
-                            <div class="detail__color">
-                                <div class="detail__submit-add">
-                                    <button class="detail__submit-add-btn" id="add-cart">
-                                        <span class="detail__submit-add-text">Thêm vào giỏ hàng</span>
-                                    </button>
+                                    <span class="detail__count-rating">( xem 0 đánh giá )</span>
                                 </div>
-                                 <div class="detail__submit-buy">
-                                    <button class="detail__submit-buy-btn">
-                                        <span class="detail__submit-add-text">Mua ngay</span>
-                                    </button>
-                                </div>
-                            </div>
 
+                                <div class="detail__price">
+                                    <span class="detail__price-text"> {{numberWithDots product.price}}đ</span>
+                                </div>
+
+                                <div class="detail__color">
+                                    <span class="detail__target">Vận chuyển: </span>
+                                    <div class="detail__delivery">
+                                        <span >
+                                            Miễn phí vận chuyển
+                                        </span>
+                                    </div> 
+                                </div>
+
+                                <div class="detail__color">
+                                    <span class="detail__target">Xu: </span>
+                                    <div class="detail__delivery">
+                                        <span >
+                                            Mua hàng và tích 10.000 Shopee Xu
+                                        </span>
+                                    </div> 
+                                </div>
+
+                                <div class="detail__color">
+                                    <span class="detail__target">Màu sắc: </span> 
+                                    {{#each product.color}}
+                                        <div class="detail__color-radio">
+                                            <button class="detail__color-radio-btn" name="btn-color" value="{{this}}"> {{this}} </button>
+                                        </div>
+                                    {{/each}}
+                                    <input type="text" name="color" hidden="hidden" id="input-color">
+                                </div>
+
+                                <div class="detail__color">
+                                    <label for="quantity" class="detail__quantity-label detail__target">Số lượng: </label>
+                                    <input type="number" class="detail__quantity-input" id="quantity" name="quantity" min="1" step="1" value="1">
+                                </div>
+                                
+                                <div class="detail__color">
+                                    <div class="detail__submit-add">
+                                        <button class="detail__submit-add-btn" id="add-cart" formaction="/cart/{{product._id}}/add-cart">
+                                            <span class="detail__submit-add-text">Thêm vào giỏ hàng</span>
+                                        </button>
+                                    </div>
+                                    <div class="detail__submit-buy">
+                                        <button class="detail__submit-buy-btn">
+                                            <span class="detail__submit-add-text">Mua ngay</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style="color: #f33a58;"id="message-error"></p>
+                                </div>
+
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
              <div class="deltail__description">
@@ -95,6 +104,14 @@
     </div>
 </div>
 
- <div class="alert">
-    <span class="alert-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. </span>
-</div>
+<div class="alert" id="alert">
+        <span class="fas fa-exclamation-circle"></span>
+        <span class="msg">Warning: This is a warning alert!</span>
+        <div class="close-btn">
+          <span class="fas fa-times"></span>
+        </div>
+    </div>
+
+<script src="/js/alert.js">
+
+</script>

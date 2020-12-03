@@ -17,16 +17,16 @@ class productController{
     //[GET] /
     home(req, res, next){
         // lấy ra từng cái trademark với category tương ứng
-        function getTrademakeOfCategoryUnique(){
-            var trademarkOfCategory = []
+        function getBrandOfCategoryUnique(){
+            var brandOfCategory = []
             return productModel.find({})
                 .then(products=>{
                     for (var i of products){
                         if (i.slugCategory == req.query.category){
-                            trademarkOfCategory.push(i.trademark);
+                            brandOfCategory.push(i.brand);
                         }
                     }
-                    return Array.from(new Set(trademarkOfCategory))
+                    return Array.from(new Set(brandOfCategory))
                 })
                 .catch(err=>{
                     next(err);
@@ -50,19 +50,18 @@ class productController{
 
         //biến để find trong db
         var filter = {}
-        var currentTrademark;
+        var currentBrand;
         //filter theo category và sort theo price
         if (req.query.hasOwnProperty("category")){
             filter.slugCategory = req.query.category
         }
-
-        if (req.query.hasOwnProperty("trademark")){
-            if (req.query.trademark != "all"){
-                currentTrademark = req.query.trademark
-                filter.trademark = req.query.trademark
+        if (req.query.hasOwnProperty("brand")){
+            if (req.query.brand != "all"){
+                currentBrand = req.query.brand
+                filter.brand = req.query.brand
             }
         }else{
-            currentTrademark = undefined
+            currentBrand = undefined
         }
 
         //biến tạm khi đọc db
@@ -73,21 +72,20 @@ class productController{
             if (typesOfPrice.indexOf(req.query.price) == -1){
                 req.originalUrl = req.originalUrl.replace(req.query.price, 'asc')
                 req.query.price = 'asc'
-                console.log(req.originalUrl)
             }
             tempProductModel = tempProductModel.sort({price: req.query.price})
         }
         var categoryQuery = getCategoryUnique();
-        var trademarkQuery = getTrademakeOfCategoryUnique()
+        var brandQuery = getBrandOfCategoryUnique()
         
-        Promise.all([categoryQuery, trademarkQuery, tempProductModel])
-            .then(([categoryUnique, trademarkUnique, products])=>{
+        Promise.all([categoryQuery, brandQuery, tempProductModel])
+            .then(([categoryUnique, brandUnique, products])=>{
                 res.render("home", {
                     products: mongooseToObject.mongoosesToObject(products),
                     filterCategory: req.query.category,
-                    trademarkOfCategory: trademarkUnique,
+                    brandOfCategory: brandUnique,
                     categoryUnique: categoryUnique,
-                    currentTrademark: currentTrademark,
+                    currentBrand: currentBrand,
                 })
             })
             .catch(err=>{
@@ -195,7 +193,7 @@ class productController{
         req.body.color = req.body.color.split(",")
         req.body.slug = generate_slug(req.body.name)
         req.body.slugCategory = generate_slug(req.body.category)
-        req.body.slugTrademark = generate_slug(req.body.trademark)
+        req.body.slugBrand = generate_slug(req.body.brand)
         productModel.updateOne({ _id: req.params.slug}, req.body)
             .then(()=>{
                 res.redirect("/");
@@ -204,6 +202,7 @@ class productController{
                 next(err);
             })
     }
+    
 }
 
 module.exports = new productController()

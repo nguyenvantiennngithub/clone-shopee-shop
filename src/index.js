@@ -21,12 +21,12 @@ app.engine('.hbs', exphbs({
             return (string1 != string2) ? option.fn(this) : option.inverse(this) 
         },
         numberWithDots: function (x) {
-            var parts = x.toString().split(".");
-            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            return parts.join(".");
+            if (x){
+                var parts = x.toString().split(".");
+                parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                return parts.join(".");
+            }
         },
-        
-        
     }
 }));
 app.set('view engine', '.hbs');
@@ -41,7 +41,7 @@ app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 connect();
-app.use(middleware.getUser);
+app.use(middleware.getInfo);
 router(app);
 
 
