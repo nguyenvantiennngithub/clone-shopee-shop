@@ -1,7 +1,6 @@
-const cartModel = require('../../module/cart.module')
 const productModel = require('../../module/product.module')
 const userModel = require('../../module/user.module')
-
+const swal = require('sweetalert')
 const mongooseToObject = require('../../until/index.mongoose')
 
 class cartController{
@@ -38,8 +37,10 @@ class cartController{
                         }
 
                         //them vao gio
+                        console.log(user)
                         userModel.updateOne({_id: req.signedCookies.idUser}, user)
                             .then(()=>{
+                                console.log("Run here")
                                 res.redirect("back")
                             })
                      })

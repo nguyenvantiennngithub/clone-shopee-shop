@@ -35,6 +35,21 @@ class middleware{
         }   
         next()
     }
+
+    testAjax(req, res, next){
+        if (req.signedCookies.idUser){
+            userModel.findOne({_id: req.signedCookies.idUser})
+                .then(user=>{
+                    if (user){
+                        
+                    }
+                })
+                .catch(err=>{
+                    next(err);
+                })
+        }   
+        next()
+    }
     
 }
 

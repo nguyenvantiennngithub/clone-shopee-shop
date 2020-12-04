@@ -97,7 +97,8 @@ class productController{
         productModel.findOne({ slug: req.params.slug })
             .then(product=>{
                 res.render("product/detail", {
-                    product: mongooseToObject.mongooseToObject(product)
+                    product: mongooseToObject.mongooseToObject(product),
+                    
                 })
             })
             .catch(err=>{

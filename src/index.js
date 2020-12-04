@@ -6,6 +6,7 @@ const router  = require('./router/index.router')
 const connect = require('./config/db/index.db')
 const jsdom = require("jsdom");
 const middleware = require('./middleware/middleware')
+const api = require('./api/router/cart.router')
 var JSDOM = jsdom.JSDOM;
 const app = express()
 const cookieParser = require('cookie-parser')
@@ -27,6 +28,9 @@ app.engine('.hbs', exphbs({
                 return parts.join(".");
             }
         },
+        convertString: function(a){
+            return a.toString();
+        }
     }
 }));
 app.set('view engine', '.hbs');
@@ -41,7 +45,8 @@ app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 connect();
-app.use(middleware.getInfo);
+api(app);
+app.use(middleware.getInfo, middleware.testAjax);
 router(app);
 
 

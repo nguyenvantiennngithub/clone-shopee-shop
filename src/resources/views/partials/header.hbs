@@ -196,7 +196,9 @@
             <div class="header__cart-container">
                 <i class="header__cart-icon fa fa-shopping-cart"></i>
                 {{#if user}}
-                <span class="header__cart-notice">{{quantityInCart}}</span>
+                {{!-- <span class="header__cart-notice" id="cart-quantity">{{quantityInCart}}</span> --}}
+                <span class="header__cart-notice" id="cart-quantity"></span>
+
                 {{/if}}
                 <!-- if no product is add class header__cart-list--no-cart to tag div has class header__cart-list -->
                 <div class="header__cart-list">
@@ -209,10 +211,10 @@
                     {{#if_not_equal quantityInCart 0}}
                     <!-- path have product -->
                    
-                    <ul class="header__cart-list-item">
+                    <ul class="header__cart-list-item" id="cart-list">
                         
-                        {{#each carts}}
-                            <li class="header__cart-item">
+                        {{!-- {{#each carts}} --}}
+                            {{!-- <li class="header__cart-item">
                                 <a href="{{this.slug}}/detail" class="header__cart-link">
                                     <div class="header__cart-item-container-img">
                                         <img src="{{this.img}}" class="header__cart-item-img">
@@ -235,7 +237,7 @@
                                     </div>
                                 </a>
                             </li>
-                        {{/each}}
+                        {{/each}} --}}
                     </ul>
                      
                     <div class="header__cart-container-btn">

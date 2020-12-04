@@ -3,7 +3,11 @@ const mongooseToObject = require('../../until/index.mongoose')
 class authController{
     //[GET] auth/login
     login(req, res, next){
-        res.render("auth/login")
+        if (!req.signedCookies.idUser){
+            res.render("auth/login")
+        }else{
+            res.redirect("/")
+        }
     }
 
     //[POST] auth/login
@@ -21,7 +25,7 @@ class authController{
 
                 res.cookie('idUser', user._id, {signed: true})
 
-                res.redirect("/")
+                res.redirect("back")
             })
             .catch(err=>{
                 next(err);
@@ -31,7 +35,7 @@ class authController{
     //[GET] auth/logout
     logout(req, res, next){
         res.clearCookie('idUser');
-        res.redirect('/')
+        res.redirect('back')
     }
     
     //[GET] auth/register

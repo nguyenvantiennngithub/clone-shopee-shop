@@ -62,7 +62,7 @@
                                     <span class="detail__target">Màu sắc: </span> 
                                     {{#each product.color}}
                                         <div class="detail__color-radio">
-                                            <button class="detail__color-radio-btn" name="btn-color" value="{{this}}"> {{this}} </button>
+                                            <button class="detail__color-radio-btn" name="btn-color" value="{{product}}{{this}}"> {{this}} </button>
                                         </div>
                                     {{/each}}
                                     <input type="text" name="color" hidden="hidden" id="input-color">
@@ -72,10 +72,18 @@
                                     <label for="quantity" class="detail__quantity-label detail__target">Số lượng: </label>
                                     <input type="number" class="detail__quantity-input" id="quantity" name="quantity" min="1" step="1" value="1">
                                 </div>
-                                
+
+                                {{!-- the input an de luu du lieu va su dung trong file alert.js --}}
+                                <input type="text" hidden="hidden" id="slug" value="{{product.slug}}">
+                                <input type="text" hidden="hidden" id="name" value="{{product.name}}">
+                                <input type="text" hidden="hidden" id="price" value="{{product.price}}">
+                                <input type="text" hidden="hidden" id="img" value="{{product.img}}">
+                                <input type="text" hidden="hidden" id="category" value="{{product.category}}">
+                                <input type="text" hidden="hidden" id="idProduct" value="{{product._id}}">
+                                <input type="text" hidden="hidden" id="quantity" value="{{product.quantity}}">
                                 <div class="detail__color">
                                     <div class="detail__submit-add">
-                                        <button class="detail__submit-add-btn" id="add-cart" formaction="/cart/{{product._id}}/add-cart">
+                                        <button class="detail__submit-add-btn" id="add-cart">
                                             <span class="detail__submit-add-text">Thêm vào giỏ hàng</span>
                                         </button>
                                     </div>
@@ -104,14 +112,4 @@
     </div>
 </div>
 
-<div class="alert" id="alert">
-        <span class="fas fa-exclamation-circle"></span>
-        <span class="msg">Warning: This is a warning alert!</span>
-        <div class="close-btn">
-          <span class="fas fa-times"></span>
-        </div>
-    </div>
 
-<script src="/js/alert.js">
-
-</script>

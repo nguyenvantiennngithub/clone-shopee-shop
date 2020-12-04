@@ -1,4 +1,3 @@
-
 <div class="header__sort">
     <ul class="header__sort-list">
         <li class="header__sort-item"><a href="#"  class="header__sort-link">Liên quan</a></li>
@@ -15,8 +14,6 @@
         </li>
     </ul>
 </div>
-
-
 <div class="app__container">
     <div class="grid wide hiden">
         <div class="row app__content">
@@ -26,9 +23,7 @@
                     <ul class="category-list">
                         <li class="category-item {{#if_equal filterCategory undefined}}category-item--active {{/if_equal}}">
                             <a href="/" class="category-item__link" >Mặc định </a>
-
                         </li>
-                        {{!--  --}}
                         <li class="category-item {{#if_equal filterCategory 'dien-thoai'}}{{!-- {{this(categoryUnique)}} --}}category-item--active {{/if_equal}}">
                             <a href="?category=dien-thoai" class="category-item__link" >Điện thoại </a>
                         </li>
@@ -38,7 +33,6 @@
                         <li class="category-item {{#if_equal filterCategory 'laptop'}}category-item--active {{/if_equal}}">
                             <a href="?category=laptop" class="category-item__link">Laptop</a>
                         </li>
-                        
                     </ul>
                 </nav>
                 
@@ -52,10 +46,8 @@
                                 {{#if_equal this ../currentBrand}}
                                     checked 
                                 {{/if_equal}}>
-                            
                             <label for="{{this}}">{{this}}</label>
                         </li>
-                        
                         {{/each}}
                         <li class="category-brand-item">
                             <input class="category-brand-item-input" type="radio" onclick="check()" id="default" name="brand" value="all"
