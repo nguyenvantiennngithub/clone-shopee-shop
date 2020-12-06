@@ -71,6 +71,11 @@ class cartController{
                 next(err);
             })
     }
+
+    //cart
+    cart(req, res, next){
+        res.render("cart/cart")
+    }
 }
 
 module.exports = new cartController()

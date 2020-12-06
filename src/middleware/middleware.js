@@ -1,5 +1,5 @@
 var userModel = require('../module/user.module')
-
+const jwt = require('jsonwebtoken')
 
 class middleware{
     checkLogin(req, res, next){
@@ -7,20 +7,24 @@ class middleware{
             res.redirect('/auth/login')
             return;
         }
-        
         next()
     }
 
     async getInfo(req, res, next){
          if (req.signedCookies.idUser){
-            await userModel.findOne({_id: req.signedCookies.idUser})
+            try {
+                var result = jwt.verify(req.signedCookies.token, 'daylabimat')
+            } catch (error) {
+                res.json("Loi get info chua su ly")
+            }
+            await userModel.findOne({_id: result}) // xac dinh tk dang dang nhap
                 .then(user=>{
                     if (user){
-                        res.locals.user = {
+                        res.locals.user = { //lay ten de dua len header
                             name: user.name,
                         }
-                        res.locals.carts = user.carts
-                        var countQuantityInCart = 0
+                        res.locals.carts = user.carts //gio hang
+                        var countQuantityInCart = 0 // so luong torng gio
                         user.carts.forEach(function(cart){
                             if(cart.isPaid === false){
                                 countQuantityInCart++;

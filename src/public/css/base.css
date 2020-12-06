@@ -296,6 +296,43 @@
 	padding: 8px 16px;
 }
 
+.btn-quantity{
+	width: 28px;
+	height: 28px;
+	border: 1px solid rgb(200, 200, 200);
+	display: block;
+	text-align: center;
+	background: rgb(248, 248, 248);
+	font-size: 1rem;
+    appearance: none;
+	line-height: 160%;
+}
+
+.btn-quantity:hover{
+	cursor: pointer;
+}
+
+.btn-quantity.right{
+	border-radius: 3px 0px 0px 3px;
+}
+.btn-quantity.left{
+	border-radius: 0px 3px 3px 0px;
+}
+
+.pb-12{
+	padding-bottom: 12px;
+}
+
+.pt-12{
+	padding-top: 12px;
+}
+
+.mt-12{
+	margin-top: 12px;
+}
+
+
+
 @keyframes pushIn{
 	from {
         transform: translateX(100%);

@@ -3,7 +3,7 @@
         <div class="row">
             <h1>Tạo khóa học</h1>
             {{!--  name, description, img, trademark, category, quantity --}}
-            <form class="create__form" method="POST" action="/{{product._id}}/update">
+            <form class="create__form" method="POST" action="/{{product._id}}/update?_method=PUT">
                 <div class="create__container">
                     <label for="create__name">Tên sản phẩm </label>
                     <input type="text" id="create__name" value="{{product.name}}" name="name" class="create__input">

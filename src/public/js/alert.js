@@ -26,6 +26,7 @@ var formAddCart = document.querySelector("#form-add-cart") //form submit de them
 var btnSubmitElement = document.querySelector("#add-cart") // cai nut de submit cai form them vao gio hang
 var messageError = document.querySelector("#message-error") // the hien thi loi
 var quantityElement = document.querySelector("#quantity") //the so luong
+var userName = document.querySelector("#user-name")
 
 
 btnColorElements.forEach(function(btn){
@@ -45,6 +46,9 @@ btnColorElements.forEach(function(btn){
 
 if (btnSubmitElement){
     btnSubmitElement.onclick = function(e){
+        if (!userName.value){
+            window.location.assign("/auth/login")
+        }
         e.preventDefault()
     }
 }
@@ -66,7 +70,6 @@ if (btnSubmitElement){
 // }
 
 //doc du lieu ajax
-console.log("Hihiih")
 function numberWithDots(x) {
     if (x){
         var parts = x.toString().split(".");
@@ -75,6 +78,11 @@ function numberWithDots(x) {
     }
 }
 // $(document).ready(function(){
+// kiem tra khi dang nhap
+console.log(window.location)
+console.log(userName, userName.value)
+if (userName && userName.value){
+    
     var listElement = document.querySelector("#cart-list")
     var quantityElement = document.querySelector("#cart-quantity")
     function fetch_data(){
@@ -115,33 +123,38 @@ function numberWithDots(x) {
             }
         })
     }
-// })
-//doc du lieu moi khi f5 hoac mo trang
-fetch_data();
+    //doc du lieu moi khi f5 hoac mo trang
 //ajax them san pham ko reload trang
-$('#add-cart').on('click', function(){
-    var slug = $("#slug").val()
-    var name = $("#name").val()
-    var price = $("#price").val()
-    var img = $("#img").val()
-    var category = $("#category").val()
-    var color = $("#input-color").val()
-    var idProduct = $("#idProduct").val()
-    var quantity = $("#quantity").val()
-    if (color){
-        $.ajax({
-            url: `/cart/${idProduct}/add-cart`,
-            method: "POST",
-            data: {isPaid: false, slug, name, price, img, category, color, idProduct, quantity},
-            success: function(data){
-                swal("Thêm sản phẩm thành công", 'Còn 1 dòng ở đây nhưng chưa biết gi gì', "success");
-                fetch_data();
-            }
-        })
-    }else{
-        messageError.innerHTML = 'Vui lòng chọn đúng và đủ thông tin'
-    }
-})
+    fetch_data();
+    $('#add-cart').on('click', function(){
+        var slug = $("#slug").val()
+        var name = $("#name").val()
+        var price = $("#price").val()
+        var img = $("#img").val()
+        var category = $("#category").val()
+        var color = $("#input-color").val()
+        var idProduct = $("#idProduct").val()
+        var quantity = $("#quantity").val()
+        if (color){
+            $.ajax({
+                url: `/cart/${idProduct}/add-cart`,
+                method: "POST",
+                data: {isPaid: false, slug, name, price, img, category, color, idProduct, quantity},
+                success: function(data){
+                    swal("Thêm sản phẩm thành công", 'Còn 1 dòng ở đây nhưng chưa biết gi gì', "success");
+                    // inputColorElement.value = ''
+                    fetch_data();
+                }
+            })
+        }else{
+            messageError.innerHTML = 'Vui lòng chọn đúng và đủ thông tin'
+        }
+    })
+}
+    
+    
+// })
+
 
 
 //reset bien moi khi chay lai tranh truong hop sai khi f5

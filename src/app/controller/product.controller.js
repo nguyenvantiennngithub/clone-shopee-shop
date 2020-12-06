@@ -1,15 +1,8 @@
 const productModel = require('../../module/product.module')
-const userModel = require('../../module/user.module')
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
-const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 const mongooseToObject = require('../../until/index.mongoose')
-
-//hàm lấy mảng có các phần tử độc nhất là 
-//cái tên nhà sản xuất của những
-//cái loại (smart-phone, laptop, tablet) 
-
 
 
 class productController{
@@ -77,11 +70,15 @@ class productController{
         }
         var categoryQuery = getCategoryUnique();
         var brandQuery = getBrandOfCategoryUnique()
-        
+        //chia trang
+        var page = parseInt(req.query.page) || 1;
+        var perPage = 10; // x
+        var begin = (page-  1) * perPage;
+        var end = perPage * page;
         Promise.all([categoryQuery, brandQuery, tempProductModel])
             .then(([categoryUnique, brandUnique, products])=>{
                 res.render("home", {
-                    products: mongooseToObject.mongoosesToObject(products),
+                    products: mongooseToObject.mongoosesToObject(products).slice(begin, end),
                     filterCategory: req.query.category,
                     brandOfCategory: brandUnique,
                     categoryUnique: categoryUnique,

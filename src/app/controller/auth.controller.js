@@ -1,5 +1,6 @@
 const userModel = require('../../module/user.module')
 const mongooseToObject = require('../../until/index.mongoose')
+const jwt = require('jsonwebtoken');
 class authController{
     //[GET] auth/login
     login(req, res, next){
@@ -24,7 +25,9 @@ class authController{
                 }
 
                 res.cookie('idUser', user._id, {signed: true})
-
+                var token = jwt.sign({ _id: user._id }, 'daylabimat');
+                console.log(token)
+                res.cookie('token', token, {signed: true})
                 res.redirect("back")
             })
             .catch(err=>{

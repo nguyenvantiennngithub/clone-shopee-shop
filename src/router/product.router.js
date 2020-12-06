@@ -5,7 +5,7 @@ const router = express.Router();
 router.get("/", productController.home)
 router.post('/save', productController.save)
 router.get('/create', middleware.checkLogin, productController.create)
-router.post("/:slug/update", middleware.checkLogin, productController.update)
+router.put("/:slug/update", middleware.checkLogin, productController.update)
 router.get("/:slug/soft-delete", middleware.checkLogin, productController.softDelete)
 router.get("/:slug/restore", middleware.checkLogin, productController.restore)
 router.get("/:slug/edit", middleware.checkLogin, productController.edit)

@@ -5,6 +5,7 @@ const path = require('path')
 const router  = require('./router/index.router')
 const connect = require('./config/db/index.db')
 const jsdom = require("jsdom");
+const methodOverride = require('method-override');
 const middleware = require('./middleware/middleware')
 const api = require('./api/router/cart.router')
 var JSDOM = jsdom.JSDOM;
@@ -40,6 +41,8 @@ app.use(
         extended: true,
     }),
 );
+app.use(methodOverride('_method'));
+
 app.use(express.json());
 app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
 
