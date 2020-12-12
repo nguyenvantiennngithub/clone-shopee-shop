@@ -26,7 +26,6 @@ class authController{
 
                 res.cookie('idUser', user._id, {signed: true})
                 var token = jwt.sign({ _id: user._id }, 'daylabimat');
-                console.log(token)
                 res.cookie('token', token, {signed: true})
                 res.redirect("back")
             })

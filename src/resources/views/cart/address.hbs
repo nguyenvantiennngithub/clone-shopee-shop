@@ -1,0 +1,50 @@
+<div class="app__create">
+    <div class="grid wide">
+        <div class="row">
+            <h1>Địa chỉ giao hàng</h1>
+            <form class="create__form" method="POST" action="/me/editProfile" id="form-address">
+                <div class="create__container">
+                    <label for="addres-name" name="nickname">Họ tên</label>
+                    <input type="text" id="addres-name" value="{{user.nickname}}" name="nickname" class="create__input">
+                    
+                    <span class="message-error"></span>
+                </div>
+
+                <div class="create__container">
+                    <label for="address-phone" name="phone">Số điện thoại</label>
+                    <input type="text" id="address-phone" value="{{user.phone}}" name="phone" class="create__input">
+                    <span class="message-error"></span>
+                </div>
+
+                <div class="create__container">
+                    <label for="provincial">Quận</label>
+                    <select id="provincial" class="create__input" name="provincial" value={{user.provincial}}>
+                    </select>
+                    <span class="message-error"></span>
+                </div>
+                <div class="create__container">
+                    <label for="district">Quận, Huyện</label>
+                    <select id="district" class="create__input" name="district" value={{user.district}} disabled>
+                        <option name="district" value="">--Chọn Quận, Huyện--</option>
+                    </select>
+                    <span class="message-error"></span>
+                </div>
+
+                <div class="create__container">
+                    <label for="commune">Xã, Phường</label>
+                    <select id="commune" class="create__input" name="commune" value={{user.commune}} disabled>
+                        <option name="commune" value="">--Chọn Xã, Phường--</option>
+                    </select>
+                    <span class="message-error"></span>
+                </div>
+
+                <div class="create__container">
+                    <label for="address-text">Tòa nhà, tên đường</label>
+                    <input type="text" id="address-text" value="{{user.address}}" name="address" class="create__input">
+                    <span class="message-error"></span>
+                </div>
+                <button type="submit" class="btn btn--primary create__submit">Thay đổi</button>
+            </form>
+        </div>
+    </div>
+</div>

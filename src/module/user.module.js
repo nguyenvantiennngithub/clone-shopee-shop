@@ -4,24 +4,20 @@ const slug = require('mongoose-slug-generator');
 const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 
-const cartSchema = new mongoose.Schema(
-    {
-        name: {type: String},
-        img: { type: String},
-        price: {type: Number},
-        quantity: { type: Number},
-        color: { type: String},
-        idProduct: {type: String}
-    }
-);
-
 
 const userSchema = new Schema(
     {
         name: { type: String },
         password: { type: String},
         carts: { type: Array},
-        isPaid: { type: Boolean, default: false}
+        isPaid: { type: Boolean, default: false},
+        phone: {type: String},
+        nickname: { type: String},
+        phone: { type: String},
+        provincial: { type: String},
+        district: { type: String},
+        commune: { type: String},
+        address: { type: String},
     },
     {
         timestamps: true,

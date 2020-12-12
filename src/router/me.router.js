@@ -6,5 +6,5 @@ const router = express.Router();
 
 
 router.get('/list/:slug', middleware.checkLogin, meController.show)
-
+router.post('/editProfile', middleware.checkLogin, meController.editProfile)
 module.exports = router;

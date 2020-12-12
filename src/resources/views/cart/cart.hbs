@@ -2,12 +2,15 @@
 <div class="app__container">
     <div class="grid wide hiden">
         <div class="row app__content">
-            <div class="col l-12">
-                <span class="cart__header">Giỏ hàng</span>
+            <div class="col l-12 mb-24">
+                <span class="cart__header" id="cart__title">Giỏ hàng</span>
             </div>
-            <div class="col l-8">
+            <div class="col l-8 cart__container" id="cart-products">
                 
-                {{#each carts}}
+                {{!-- {{#each carts}}
+                    
+                    <input type="text" value="{{this.color}}" name="color">
+                    <input type="text" value="{{this.slug}}" name="slug">
                     <div class="col l-12">
                         <div class="cart__product-container">
                             <div class="cart__product-container-img">
@@ -21,8 +24,9 @@
                                     <span class="cart__product-info-deliver-text">Màu: {{this.color}}</span>
                                 </div>
                                 <div>
-                                    <a href="/cart/{{this.slug}}/{{this.color}}/delete" class="cart__product-info-delete">Xóa</a>
-                                    <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
+                                    <a href="#" name="{{this.slug}}/{{this.color}}" class="cart__product-info-delete">Xóa</a> --}}
+                                    {{!-- <a href="/cart/{{this.slug}}/{{this.color}}/delete" name="delete-product" class="cart__product-info-delete">Xóa</a> --}}
+                                    {{!-- <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
                                 </div>
                             </div>
                             <div class="cart__product-price">
@@ -35,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                {{/each}}
+                {{/each}} --}}
             </div>
             
             <div class="col l-4">
@@ -43,14 +47,14 @@
                     <div class="cart__user-conatainer">
                         <div class="cart__user-header">
                             <span class="cart__user-header-text">Địa chỉ nhận hàng</span>
-                            <a href="#" class="cart__user-header-change">Thay đổi</a>
+                            <a href="/cart/address" class="cart__user-header-change">Thay đổi</a>
                         </div>
                         <div class="cart__user-info">
-                            <span class="cart__user-info-name">Nguyễn Văn Tiến</span>
-                            <span class="cart__user-info-phone">09615312316</span>
+                            <span class="cart__user-info-name">{{user.nickname}}</span>
+                            <span class="cart__user-info-phone">{{user.phone}}</span>
                         </div>
                         <div class="cart__user-adress">
-                            <span class="cart__user-adress-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat</span>
+                            <span class="cart__user-adress-text">{{user.address}}</span>
                         </div>
                     </div>
                 </div>
@@ -59,7 +63,7 @@
                         <ul class="cart__price-list">
                             <li class="cart__price-temp">
                                 <span class="cart__price-temp-text">Tạm tinh</span>
-                                <span class="cart__price-temp-price">6.9400.000đ</span>
+                                <span class="cart__price-temp-price" id="total-price-temp">6.9400.000đ</span>
                             </li>
                         </ul>
                     </div>
@@ -67,14 +71,14 @@
                     <div class="cart__price-conatainer">
                         <div class="cart__price-temp mt-12">
                             <span class="cart__price-now-text">Thành tiền</span>
-                            <span class="cart__price-now-price">6.9400.000đ</span>
+                            <span class="cart__price-now-price" id="total-price"></span>
                         </div>
                     </div>
                      
                 </div>
                 
                 <div class="col l-12 pt-12">
-                    <button class="detail__submit-buy-btn btn-submit-cart">
+                    <button class="detail__submit-buy-btn btn-submit-cart" id="cart-buy">
                         <span class="detail__submit-add-text">Tiến hành đặt hàng</span>
                     </button>
                      

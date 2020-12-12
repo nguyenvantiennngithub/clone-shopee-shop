@@ -1,8 +1,9 @@
 const userModel = require('../../module/user.module')
+const addressModel = require('../../module/address.module')
 const mongooseToObject = require('../../until/index.mongoose')
 class authController{
-    cartApi(req, res, next){
-        userModel.findOne({_id: req.signedCookies.idUser})
+    async cartApi(req, res, next){
+        await userModel.findOne({_id: req.signedCookies.idUser})
             .then(user=>{
                 res.json(user.carts)
             })
@@ -10,6 +11,16 @@ class authController{
                 next(err)
             })
         next()
+    }
+    async addressApi(req, res, next){
+        await addressModel.find({})
+            .then((address)=>{
+                res.json(address)
+            })
+            .catch(err=>{
+                next(err);
+            })
+        next();
     }
 }
 

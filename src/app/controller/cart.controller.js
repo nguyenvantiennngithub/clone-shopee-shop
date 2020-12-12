@@ -12,6 +12,10 @@ class cartController{
         // lay thong tin san pham
         await productModel.findOne({ _id: req.params.slug})
             .then((product)=>{
+                if (!req.body.color){
+                    res.redirect("back");
+                    return;
+                }
                 cartAdd.isPaid = false;
                 cartAdd.slug = product.slug;
                 cartAdd.name = product.name;
@@ -37,10 +41,9 @@ class cartController{
                         }
 
                         //them vao gio
-                        console.log(user)
+                        console.log(user.carts)
                         userModel.updateOne({_id: req.signedCookies.idUser}, user)
                             .then(()=>{
-                                console.log("Run here")
                                 res.redirect("back")
                             })
                      })
@@ -54,11 +57,13 @@ class cartController{
     delete(req, res, next){
         userModel.findOne({ _id: req.signedCookies.idUser})
             .then((cart)=>{
+                console.log("delete")
                 cart.carts.forEach(function(product, index){
-                    if (product.slug === req.params.slug && product.color === req.params.slugColor){
+                    if (product.slug === req.params.slug && product.color === req.params.color){
                         cart.carts.splice(index, 1)
                         userModel.updateOne({_id: req.signedCookies.idUser}, cart)
                             .then(()=>{
+                                console.log("thanh cong")
                                 res.redirect("back")
                             })
                             .catch(err=>{
@@ -72,9 +77,47 @@ class cartController{
             })
     }
 
-    //cart
+    //[GET] cart
     cart(req, res, next){
-        res.render("cart/cart")
+        userModel.findOne({_id: req.signedCookies.idUser})
+            .then((user)=>{
+                console.log(user);
+                res.render("cart/cart", {
+                    user: mongooseToObject.mongooseToObject(user)
+                })
+            })
+        
+    }
+
+    //edit
+    editCart(req, res, next){
+        console.log("nhan duoc")
+        userModel.findOne({_id: req.signedCookies.idUser})
+            .then(user=>{
+                user.carts.forEach(function(product, index){
+                    if (product.slug == req.params.slug && product.color == req.params.color){
+                        user.carts[index].quantity = req.params.quantity
+                    }
+                })
+                userModel.updateOne({_id: req.signedCookies.idUser}, user)
+                    .then(()=>{
+                        res.redirect("back")
+                    })
+                    .catch(next)
+                }
+            )  
+            .catch(next)
+    }
+    
+    address(req, res, next){
+        userModel.findOne({_id: req.signedCookies.idUser})
+            .then((user)=>{
+                console.log(user);
+                res.render("cart/address", {
+                    user: mongooseToObject.mongooseToObject(user)
+                })
+            })
+        
     }
 }
 

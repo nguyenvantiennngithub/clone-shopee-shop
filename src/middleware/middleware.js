@@ -21,7 +21,7 @@ class middleware{
                 .then(user=>{
                     if (user){
                         res.locals.user = { //lay ten de dua len header
-                            name: user.name,
+                            username: user.name,
                         }
                         res.locals.carts = user.carts //gio hang
                         var countQuantityInCart = 0 // so luong torng gio

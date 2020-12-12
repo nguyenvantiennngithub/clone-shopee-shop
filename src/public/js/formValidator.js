@@ -129,7 +129,13 @@ Validator.passwordConfig = function(selector, message, password){
     }
 }
 
-
-
-
-
+Validator.isPhone = function(selector, message, password){
+    return {
+        selector: selector,
+        test: function(data){
+            var regex = /^([0-9\(\)\/\+ \-]*)$/;
+            console.log(data)
+            return  regex.test(data) ? undefined : message
+        }
+    }
+}

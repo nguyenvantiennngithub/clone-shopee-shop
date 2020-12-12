@@ -1,4 +1,5 @@
 const productModel = require('../../module/product.module')
+const userModel = require('../../module/user.module')
 const mongooseToObject = require('../../until/index.mongoose')
 
 class meController{
@@ -22,7 +23,16 @@ class meController{
             })  
         })
     }
-   
+    //[POST] me/editProfile
+    editProfile(req, res, next){
+        userModel.updateOne({_id: req.signedCookies.idUser}, req.body)
+            .then(()=>{
+                res.redirect("/")
+            })
+            .catch(err=>{
+                next(err);
+            })
+    }
 }
 
 module.exports = new meController()
