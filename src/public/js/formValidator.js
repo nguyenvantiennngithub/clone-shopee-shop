@@ -24,7 +24,6 @@ function Validator(options){
                         (formElement.querySelector(rule.selector + ':checked'))
                     break
                 }
-                
                 default:{
                     messageError = rules[i](input.value)
                     if (messageError){
@@ -97,9 +96,7 @@ function Validator(options){
                 }
             })
         })
-
     }
-    
 }
 
 Validator.isRequired = function(selector, message){

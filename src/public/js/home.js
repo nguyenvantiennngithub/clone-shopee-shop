@@ -1,9 +1,9 @@
+
 var search = window.location.search
 function addUrlParameter(key, value) {
-    console.log(window.location.search);
     switch(key){
         case 'category':{
-            window.location.search += (window.location.search == '') ? `?${key}=${value}` : `&${key}=${value}` 
+                
             break;
         }
         case 'price':{
@@ -16,7 +16,24 @@ function addUrlParameter(key, value) {
             }
             break;
         }
+        case 'page':{
+            if (search.indexOf(`${key}=`)){
+                console.log(search, search.indexOf(`${key}=`))
+            }
+        }
     }
+}
+
+var btnPage = document.querySelectorAll(".pagination-item__link")
+if (btnPage){
+    btnPage.forEach(btn=>{
+        btn.onclick = function(){
+            page = search.indexOf('page=')
+            if (page){
+                console.log(page, search)
+            }
+        }
+    })
 }
 
 function check(){

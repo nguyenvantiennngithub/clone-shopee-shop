@@ -11,7 +11,7 @@ class middleware{
     }
 
     async getInfo(req, res, next){
-         if (req.signedCookies.idUser){
+        if (req.signedCookies.idUser){
             try {
                 var result = jwt.verify(req.signedCookies.token, 'daylabimat')
             } catch (error) {

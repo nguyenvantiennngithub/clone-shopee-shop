@@ -9,7 +9,7 @@ const middleware = require('../middleware/middleware');
 function connect(app) {
     app.use('/', productRouter);
     app.use('/me', meRouter);
-    app.use('/auth', authRouter);
+    app.use('/auth', middleware.getInfo, authRouter);
     app.use('/cart', cartRouter);
 }
 

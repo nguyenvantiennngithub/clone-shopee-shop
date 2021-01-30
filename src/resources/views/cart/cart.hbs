@@ -5,44 +5,45 @@
             <div class="col l-12 mb-24">
                 <span class="cart__header" id="cart__title">Giỏ hàng</span>
             </div>
-            <div class="col l-8 cart__container" id="cart-products">
-                
-                {{!-- {{#each carts}}
+            
+
+                <div class="col l-8 cart__container" id="cart-products">
                     
-                    <input type="text" value="{{this.color}}" name="color">
-                    <input type="text" value="{{this.slug}}" name="slug">
-                    <div class="col l-12">
-                        <div class="cart__product-container">
-                            <div class="cart__product-container-img">
-                                <img src="{{this.img}}" class="cart__product-img">
-                            </div>
-                            <div class="cart__product-info">
-                                <div class="cart__product-info-name">
-                                    <a href="/{{this.slug}}/detail" class="header__cart-product-name-link">{{this.name}}</a h>
+                    {{!-- {{#each carts}}
+                        
+                        <input type="text" value="{{this.color}}" name="color">
+                        <input type="text" value="{{this.slug}}" name="slug">
+                        <div class="col l-12">
+                            <div class="cart__product-container">
+                                <div class="cart__product-container-img">
+                                    <img src="{{this.img}}" class="cart__product-img">
                                 </div>
-                                <div class="cart__product-info-deliver">
-                                    <span class="cart__product-info-deliver-text">Màu: {{this.color}}</span>
+                                <div class="cart__product-info">
+                                    <div class="cart__product-info-name">
+                                        <a href="/{{this.slug}}/detail" class="header__cart-product-name-link">{{this.name}}</a h>
+                                    </div>
+                                    <div class="cart__product-info-deliver">
+                                        <span class="cart__product-info-deliver-text">Màu: {{this.color}}</span>
+                                    </div>
+                                    <div>
+                                        <a href="#" name="{{this.slug}}/{{this.color}}" class="cart__product-info-delete">Xóa</a> --}}
+                                        {{!-- <a href="/cart/{{this.slug}}/{{this.color}}/delete" name="delete-product" class="cart__product-info-delete">Xóa</a> --}}
+                                        {{!-- <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a href="#" name="{{this.slug}}/{{this.color}}" class="cart__product-info-delete">Xóa</a> --}}
-                                    {{!-- <a href="/cart/{{this.slug}}/{{this.color}}/delete" name="delete-product" class="cart__product-info-delete">Xóa</a> --}}
-                                    {{!-- <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
+                                <div class="cart__product-price">
+                                    <span class="cart__product-price-text">{{numberWithDots this.price}}</span>
                                 </div>
-                            </div>
-                            <div class="cart__product-price">
-                                <span class="cart__product-price-text">{{numberWithDots this.price}}</span>
-                            </div>
-                            <div class="cart__product-quantity">
-                                <span class="btn-quantity right">-</span>
-                                <input type="text" class="cart__product-quantity-input" value="1">
-                                <span class="btn-quantity left">+</span>
+                                <div class="cart__product-quantity">
+                                    <span class="btn-quantity right">-</span>
+                                    <input type="text" class="cart__product-quantity-input" value="1">
+                                    <span class="btn-quantity left">+</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {{/each}} --}}
-            </div>
-            
-            <div class="col l-4">
+                    {{/each}} --}}
+                </div>
+                <div class="col l-4">
                 <div class="col l-12 pb-12">
                     <div class="cart__user-conatainer">
                         <div class="cart__user-header">
@@ -50,11 +51,11 @@
                             <a href="/cart/address" class="cart__user-header-change">Thay đổi</a>
                         </div>
                         <div class="cart__user-info">
-                            <span class="cart__user-info-name">{{user.nickname}}</span>
-                            <span class="cart__user-info-phone">{{user.phone}}</span>
+                            <span class="cart__user-info-name">{{userInfo.nickname}}</span>
+                            <span class="cart__user-info-phone">{{userInfo.phone}}</span>
                         </div>
                         <div class="cart__user-adress">
-                            <span class="cart__user-adress-text">{{user.address}}</span>
+                            <span class="cart__user-adress-text">{{userInfo.address}}</span>
                         </div>
                     </div>
                 </div>

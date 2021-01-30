@@ -13,12 +13,13 @@ class authController{
 
     //[POST] auth/login
     checkLogin(req, res, next){
-        userModel.findOne({name: req.body.username, password: req.body.password})
+        userModel.findOne({name: req.body.name, password: req.body.password})
             .then(user=>{
+                
                 if (!user){
                     res.render('auth/login',{
                         messageError: 'Nhập sai email hoặc mật khẩu',
-                        username: req.body.username, 
+                        username: req.body.name, 
                         password: req.body.password
                     })
                     return;
@@ -69,6 +70,8 @@ class authController{
             next(err)
         })
     }
+
+    
    
 }
 

@@ -63,23 +63,23 @@ async function fetch_data_cart(){
         url: "http://localhost:8080/api/cart",
         method: "GET",
         success: await function(data){
+            console.log(data)
             if (cartProducts){
                 btnBuyElement.onclick = function(e){
                     swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
-                        icon: "warning",
+                        text: "Còn 1 dòng ở đây nhưng biết viết gì ...",
+                        icon: "success",
                         buttons: true,
                         dangerMode: true,
-                      })
-                      .then((willDelete) => {
-                        if (willDelete) {
-                          swal("Mua hàng thành công", {
-                            icon: "success",
-                          });
+                    })
+                    .then((willDelete) => {
+                        if (willDelete){
+                            var formBuy = document.querySelector("#form-buy")
+                            formBuy.submit()
                         }
-                      });
-                      e.preventDefault()
+                    });
+                    e.preventDefault()
             }
 
                 //cartProducts.innerHTML
@@ -103,39 +103,42 @@ async function fetch_data_cart(){
                     </div>
                 `;
 
-
+                html += '<form action="/cart/buy" method="POST" id="form-buy">'
                 html += data.map(function(product){
                     tempPrice = numberWithDots(product.price)
                     return `
-                    <div class="col l-12">
-                        <div class="cart__product-container">
-                            <input class="cart__product-pick-input" type="checkbox" name="cart-checkbox" checked>
-                            <div class="cart__product-container-img">
-                                <img src="${product.img}" class="cart__product-img">
-                            </div>
-                            <div class="cart__product-info">
-                                <div class="cart__product-info-name">
-                                    <a href="/${product.slug}/detail" class="header__cart-product-name-link">${product.name}</a h>
+                    
+                        <div class="col l-12">
+                            <div class="cart__product-container">
+                                <input class="cart__product-pick-input" type="checkbox" name="cart-checkbox" value="${product.slug}|${product.color}|${product.quantity}" checked>
+                                <div class="cart__product-container-img">
+                                    <img src="${product.img}" class="cart__product-img">
                                 </div>
-                                <div class="cart__product-info-deliver">
-                                    <span class="cart__product-info-deliver-text">Màu: ${product.color}</span>
+                                <div class="cart__product-info">
+                                    <div class="cart__product-info-name">
+                                        <a href="/${product.slug}/detail" class="header__cart-product-name-link">${product.name}</a h>
+                                    </div>
+                                    <div class="cart__product-info-deliver">
+                                        <span class="cart__product-info-deliver-text" name="cart-color">Màu: ${product.color}</span>
+                                    </div>
+                                    <div>
+                                        <a href="#" name="${product.slug}/${product.color}" class="cart__product-info-delete">Xóa</a>
+                                        <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a href="#" name="${product.slug}/${product.color}" class="cart__product-info-delete">Xóa</a>
-                                    <a href="#" class="cart__product-info-buy-later">Để dành mua sau</a>
+                                <div class="cart__product-price">
+                                    <span class="cart__product-price-text" name="cart-price">${tempPrice}</span>
                                 </div>
-                            </div>
-                            <div class="cart__product-price">
-                                <span class="cart__product-price-text" name="cart-price">${tempPrice}</span>
-                            </div>
-                            <div class="cart__product-quantity">
-                                <span class="btn-quantity right" name="cart-input-down">-</span>
-                                <input type="text" class="cart__product-quantity-input" name="cart-input" value="${product.quantity}">
-                                <span class="btn-quantity left" name="cart-input-up">+</span>
+                                <div class="cart__product-quantity">
+                                    <span class="btn-quantity right" name="cart-input-down">-</span>
+                                    <input type="text" class="cart__product-quantity-input" name="cart-input" value="${product.quantity}">
+                                    <span class="btn-quantity left" name="cart-input-up">+</span>
+                                </div>
                             </div>
                         </div>
-                    </div>`
+                    `
                 })
+                html += '</form>'
                 cartProducts.innerHTML = html;
             }
 
@@ -252,6 +255,17 @@ async function fetch_data_cart(){
                             btn.classList.add("disabled")
                         }
                     }
+                    $.ajax({
+                        url: `http://localhost:8080/cart/${data[index].slug}/${inputQuantityElement[index].value}/${data[index].color}/edit-cart`, 
+                        method: "GET", //doc du lieu tu url tren
+                        success: function(){ //khi thanh cong thi map cai html voi cai vua doc duoc roi innerHTML vo cai bien ul
+                            fetch_data_cart();
+                            fetch_data_miniCart();
+                            console.log(data)
+                            cartTitleElement.innerHTML = `Giỏ hàng <span class="cart__product-count">(${data.length} sản phẩm)</span>`
+                            innerTextPrice();
+                        }
+                    })
                 }
             })
 

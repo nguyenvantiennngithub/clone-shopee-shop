@@ -18,6 +18,7 @@ const userSchema = new Schema(
         district: { type: String},
         commune: { type: String},
         address: { type: String},
+        paid: { type: Array}
     },
     {
         timestamps: true,
