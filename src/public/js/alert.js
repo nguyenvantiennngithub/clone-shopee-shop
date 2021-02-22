@@ -59,11 +59,11 @@ function setInputFilter(textbox, inputFilter) {
 
 // doc du lieu  
 async function fetch_data_cart(){
+
     await $.ajax({
         url: "http://localhost:8080/api/cart",
         method: "GET",
         success: await function(data){
-            console.log(data)
             if (cartProducts){
                 btnBuyElement.onclick = function(e){
                     swal({
