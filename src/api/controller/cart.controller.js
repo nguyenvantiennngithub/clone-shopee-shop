@@ -3,6 +3,8 @@ const addressModel = require('../../module/address.module')
 const mongooseToObject = require('../../until/index.mongoose')
 class authController{
     async cartApi(req, res, next){
+
+        //test
         await userModel.findOne({_id: req.signedCookies.idUser})
             .then(user=>{
                 res.json(user.carts)
