@@ -311,6 +311,7 @@ fetch_data_cart()
 if (userName && userName.value){
     var listElement = document.querySelector("#cart-list")
     var quantityElement = document.querySelector("#cart-quantity")
+    var noCart = document.querySelector('#no-cart')
     function fetch_data_miniCart(){ // doc du lieu cua trnang detail
         $.ajax({
             url: "http://localhost:8080/api/cart", 
@@ -359,6 +360,7 @@ if (userName && userName.value){
         var color = $("#input-color").val()
         var idProduct = $("#idProduct").val()
         var quantity = $("#quantity").val()
+        var noCart = document.querySelector('#no-cart')
         if (color){
             $.ajax({
                 url: `/cart/${idProduct}/add-cart`,
@@ -368,6 +370,10 @@ if (userName && userName.value){
                     swal("Thêm sản phẩm thành công", 'Còn 1 dòng ở đây nhưng chưa biết gi gì', "success");
                     // inputColorElement.value = '' // khi thanh cong thi alert len thong bao 
                     fetch_data_miniCart();
+
+                    noCart.innerHTML = ''
+                    console.log(noCart)
+                    console.log("nocart")
                 }
             })
         }else{
@@ -386,7 +392,7 @@ $.ajax({
             var provincial = {}; // bien luu 1 object của 1 tỉnh khi chọn tỉnh xong
 
             // inner html vào thẻ tỉnh
-            var htmlProvincial = `<option name="provincial" value="">--Chọn Quận, Tỉnh--</option>` //option nháp
+            var htmlProvincial = `<option name="provincial" value="">--Chọn Thành phố, Tỉnh--</option>` //option nháp
             htmlProvincial += data.map(function(address){
                 return `<option name="provincial" value="${address.name}">${address.name}</option>` // map cái option thành html để inner
             })

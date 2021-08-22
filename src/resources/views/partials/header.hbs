@@ -208,11 +208,18 @@
                     <!-- part no product -->
                      <h3 class="header__cart-heading">Sản phẩm đã thêm</h3>
                     {{#if_equal quantityInCart 0}}
-                        <img src="/img/Anhconheo.png" class="header__cart-no-cart-img">
-                        <span class="header__cart-list--no-cart-msg">Chưa có sảng phẩm</span>
+                        <div id="no-cart">
+                            <img src="/img/Anhconheo.png" class="header__cart-no-cart-img">
+                            <span class="header__cart-list--no-cart-msg">Chưa có sảng phẩm</span>
+                        </div>
                     {{/if_equal}}
                     {{#if_not_equal quantityInCart 0}}
                     <!-- path have product -->
+                    <div id="no-cart">
+                    </div>
+                    
+                    {{/if_not_equal}}
+
                    
                     <ul class="header__cart-list-item" id="cart-list">
                         
@@ -248,7 +255,7 @@
                             <a href="/cart" class="header__cart-show-cart-link">Xem giỏ hàng</a>
                         </button>	
                     </div>
-                    {{/if_not_equal}}
+
                 </div>
             </div>		
         </div>

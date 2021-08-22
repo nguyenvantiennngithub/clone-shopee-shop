@@ -17,14 +17,15 @@
                 </div>
 
                 <div class="create__container">
-                    <label for="provincial">Quận</label>
+                    <label for="provincial">Tỉnh, Thành phố</label>
                     <select id="provincial" class="create__input" name="provincial" value={{user.provincial}}>
+                        <option name="district" value="">--Chọn Tỉnh, Thành phố--</option>
                     </select>
                     <span class="message-error"></span>
                 </div>
                 <div class="create__container">
                     <label for="district">Quận, Huyện</label>
-                    <select id="district" class="create__input" name="district" value={{user.district}} disabled>
+                    <select id="district" class="create__input" name="district" value="{{user.district}}" disabled="disabled">
                         <option name="district" value="">--Chọn Quận, Huyện--</option>
                     </select>
                     <span class="message-error"></span>
@@ -32,7 +33,7 @@
 
                 <div class="create__container">
                     <label for="commune">Xã, Phường</label>
-                    <select id="commune" class="create__input" name="commune" value={{user.commune}} disabled>
+                    <select id="commune" class="create__input" name="commune" value="{{user.commune}}" disabled>
                         <option name="commune" value="">--Chọn Xã, Phường--</option>
                     </select>
                     <span class="message-error"></span>
@@ -48,3 +49,4 @@
         </div>
     </div>
 </div>
+
