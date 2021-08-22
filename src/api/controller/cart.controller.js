@@ -7,6 +7,7 @@ class authController{
         //test
         await userModel.findOne({_id: req.signedCookies.idUser})
             .then(user=>{
+                console.log(user)
                 res.json(user.carts)
             })
             .catch(err=>{

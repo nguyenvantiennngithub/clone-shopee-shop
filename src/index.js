@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 // const morgan = require('morgan')
 const exphbs  = require('express-handlebars')
 const path = require('path')
@@ -44,7 +45,7 @@ app.use(
 app.use(methodOverride('_method'));
 
 app.use(express.json());
-app.use(cookieParser("daylamotcaichuoinhunghientaichuabietvietgi"))
+app.use(cookieParser(process.env.COOKIEHASH))
 
 app.set('views', path.join(__dirname, 'resources', 'views'));
 connect();
