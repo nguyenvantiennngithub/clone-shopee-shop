@@ -61,7 +61,7 @@ function setInputFilter(textbox, inputFilter) {
 async function fetch_data_cart(){
 
     await $.ajax({
-        url: "http://localhost:8080/api/cart",
+        url: "/api/cart",
         method: "GET",
         success: function(data){
             if (cartProducts){
@@ -165,7 +165,7 @@ async function fetch_data_cart(){
                         if (willDelete) {
                         // Xoa du lieu
                             $.ajax({
-                                url: `http://localhost:8080/cart/${btn.name}/delete`, 
+                                url: `/cart/${btn.name}/delete`, 
                                 method: "GET", //doc du lieu tu url tren
                                 success: function(){ //khi thanh cong thi map cai html voi cai vua doc duoc roi innerHTML vo cai bien ul
                                     cartTitleElement.innerHTML = `Giỏ hàng <span class="cart__product-count">(${data.length} sản phẩm)</span>`
@@ -230,7 +230,7 @@ async function fetch_data_cart(){
                         btnQuantityDown[index].classList.remove("disabled")
                     }
                     $.ajax({
-                        url: `http://localhost:8080/cart/${data[index].slug}/${inputQuantityElement[index].value}/${data[index].color}/edit-cart`, 
+                        url: `/cart/${data[index].slug}/${inputQuantityElement[index].value}/${data[index].color}/edit-cart`, 
                         method: "GET", //doc du lieu tu url tren
                         success: function(){ //khi thanh cong thi map cai html voi cai vua doc duoc roi innerHTML vo cai bien ul
                             fetch_data_cart();
@@ -256,7 +256,7 @@ async function fetch_data_cart(){
                         }
                     }
                     $.ajax({
-                        url: `http://localhost:8080/cart/${data[index].slug}/${inputQuantityElement[index].value}/${data[index].color}/edit-cart`, 
+                        url: `/cart/${data[index].slug}/${inputQuantityElement[index].value}/${data[index].color}/edit-cart`, 
                         method: "GET", //doc du lieu tu url tren
                         success: function(){ //khi thanh cong thi map cai html voi cai vua doc duoc roi innerHTML vo cai bien ul
                             fetch_data_cart();
@@ -315,7 +315,7 @@ if (userName && userName.value){
     var noCart = document.querySelector('#no-cart')
     function fetch_data_miniCart(){ // doc du lieu cua trnang detail
         $.ajax({
-            url: "http://localhost:8080/api/cart", 
+            url: "/api/cart", 
             method: "GET", //doc du lieu tu url tren
             success: function(data){ //khi thanh cong thi map cai html voi cai vua doc duoc roi innerHTML vo cai bien ul
                 quantityElement.innerHTML = data.length; //so luong vo hang
@@ -384,7 +384,7 @@ if (userName && userName.value){
 }
     
 $.ajax({
-    url: `http://localhost:8080/api/address`,
+    url: `/api/address`,
     method: "GET", //doc du lieu tu url tren
     success: function(data){
         if (provincialInputElement){
@@ -406,7 +406,7 @@ $.ajax({
                     districtInputElement.disabled = false;
                 }
                 $.ajax({
-                    url: `http://localhost:8080/api/address`, // đọc đử liệu
+                    url: `/api/address`, // đọc đử liệu
                     method: "GET", //doc du lieu tu url tren
                     success: function(data2){ // khi mà change thì phải đọc ajax lại 1 lần nữa
                         var provincialObject = data2.find(function(provincial){ // tìm cái tỉnh mà vừa chọn ở trên
@@ -421,7 +421,7 @@ $.ajax({
 
                         //tiếp tục bắt sk khi mà chọn xong huyện thì tới xã
                         $.ajax({
-                            url: `http://localhost:8080/api/address`, // đọc đử liệu
+                            url: `/api/address`, // đọc đử liệu
                             method: "GET", //doc du lieu tu url tren
                             success: function(data3){
                                 provincialObject.districts
@@ -438,7 +438,7 @@ $.ajax({
 
    
 $.ajax({
-    url: `http://localhost:8080/api/address`,
+    url: `/api/address`,
     method: "GET", //doc du lieu tu url tren
     success: function(data){
         var provincialInputElement = document.querySelector("#provincial") // the input chọn tỉnh
