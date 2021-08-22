@@ -1,5 +1,5 @@
 const express = require('express')
-const morgan = require('morgan')
+// const morgan = require('morgan')
 const exphbs  = require('express-handlebars')
 const path = require('path')
 const router  = require('./router/index.router')
